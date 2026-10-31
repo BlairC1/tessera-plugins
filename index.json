@@ -1,6 +1,6 @@
 {
  "format": 1,
- "generated": "2026-10-31T20:03:57Z",
+ "generated": "2026-10-31T23:27:31Z",
  "plugin_api": "0.24",
  "blocked": [],
  "featured": [
@@ -4027,14 +4027,14 @@
    "label": "community",
    "status": "ok",
    "release": {
-    "version": "0.4.0",
-    "sha": "f8c5c63498309ad33c4195df474e4b065eee7e81",
-    "date": "2026-10-30",
-    "tag": "v0.4.0"
+    "version": "0.6.0",
+    "sha": "6dea9045ad3da4c62722045ed9dd5da7aef9ae8c",
+    "date": "2026-10-31",
+    "tag": "v0.6.0"
    },
    "manifest": {
     "id": "energidata_price",
-    "version": "0.4.0",
+    "version": "0.6.0",
     "api": "0.12",
     "icon": "flash",
     "maintainer": "Andware",
@@ -4085,6 +4085,14 @@
        "tomorrow": {
         "path": "raw_tomorrow[*].price",
         "as": "numbers"
+       },
+       "outlook": {
+        "path": "forecast[*].price",
+        "as": "numbers"
+       },
+       "outlook_start": {
+        "path": "forecast[0].hour",
+        "as": "epoch"
        }
       },
       "example": "tile_example",
@@ -4149,6 +4157,33 @@
          {
           "value": "hour",
           "label": "resolution_hour"
+         }
+        ]
+       },
+       {
+        "id": "cheap",
+        "kind": "number",
+        "min": 0,
+        "max": 6,
+        "step": 1,
+        "default": 0,
+        "label": "cheap",
+        "hint": "cheap_hint"
+       },
+       {
+        "id": "cheap_mode",
+        "kind": "choice",
+        "default": "single",
+        "label": "cheap_mode",
+        "hint": "cheap_mode_hint",
+        "choices": [
+         {
+          "value": "single",
+          "label": "cheap_single"
+         },
+         {
+          "value": "block",
+          "label": "cheap_block"
          }
         ]
        },
@@ -4248,7 +4283,8 @@
       "average": "Gennemsnit",
       "no_graph": "Ingen priser for i dag",
       "feed_in": "Salg {value}",
-      "formula_error": "Tjek formlen"
+      "formula_error": "Tjek formlen",
+      "cheap": "Billigst {value}"
      },
      "app": {
       "name": "Elpris (Energi Data Service)",
@@ -4261,7 +4297,7 @@
       "unit_kr": "kr/kWh",
       "unit_ore": "øre/kWh",
       "span": "Periode",
-      "span_hint": "Hele døgn: i dag og i morgen (48 timer), når morgendagens priser er kommet, eller kun i dag. Eller kun de kommende timer fra den nuværende time: de næste 24, eller de næste 48 så langt priserne rækker (de går til midnat i morgen, og morgendagens kommer først først på eftermiddagen).",
+      "span_hint": "Hele døgn: i dag og i morgen (48 timer), når morgendagens priser er kommet, eller kun i dag. Eller kun de kommende timer fra den nuværende time: de næste 24 eller 48. Efter de kendte priser viser grafen Carnot-prognosen med svagere søjler, når prognosen er slået til i Energi Data Service.",
       "span_two_days": "I dag + i morgen (48 t)",
       "span_today": "Kun i dag (24 t)",
       "span_next24": "Kommende 24 timer",
@@ -4270,6 +4306,12 @@
       "resolution_hint": "Hvert kvarter som sensoren har det, eller hver time som gennemsnittet af dens fire kvarterer. Prisen nu, lav, høj og grafen følger valget.",
       "resolution_quarter": "Kvarter",
       "resolution_hour": "Time (gennemsnit)",
+      "cheap": "Billigste timer",
+      "cheap_hint": "Markér så mange af de billigste kommende timer i grafen, fra den nuværende time og frem, blandt de kendte priser (ikke prognosen). 0: ingen.",
+      "cheap_mode": "Billigste timer som",
+      "cheap_mode_hint": "Enkelte timer (de billigste, uanset hvor de ligger), eller sammenhængende (den billigste periode, fx til opvaskemaskine eller bil).",
+      "cheap_single": "Enkelte timer",
+      "cheap_block": "Sammenhængende",
       "decimals": "Decimaler",
       "decimals_hint": "Hvor mange decimaler prisen vises med. I øre er nul eller én nok.",
       "feed_in": "Salgspris",
@@ -4306,7 +4348,8 @@
       "average": "Average",
       "no_graph": "No prices for today",
       "feed_in": "Feed-in {value}",
-      "formula_error": "Check the formula"
+      "formula_error": "Check the formula",
+      "cheap": "Cheapest {value}"
      },
      "app": {
       "name": "Elpris (Energi Data Service)",
@@ -4319,7 +4362,7 @@
       "unit_kr": "kr/kWh",
       "unit_ore": "øre/kWh",
       "span": "Period",
-      "span_hint": "Whole days: today and tomorrow (48 hours) once tomorrow's prices are in, or today alone. Or only the hours to come, from the hour of now: the next 24, or the next 48 as far as the prices go (they reach midnight tomorrow, and tomorrow's come in the early afternoon).",
+      "span_hint": "Whole days: today and tomorrow (48 hours) once tomorrow's prices are in, or today alone. Or only the hours to come, from the hour of now: the next 24 or 48. Past the known prices the graph shows Carnot's forecast in fainter bars, when the forecast is on in Energi Data Service.",
       "span_two_days": "Today + tomorrow (48 h)",
       "span_today": "Today only (24 h)",
       "span_next24": "Next 24 hours",
@@ -4328,6 +4371,12 @@
       "resolution_hint": "Every quarter of an hour as the sensor has it, or each hour as the average of its four quarters. The price now, the low, high and graph follow it.",
       "resolution_quarter": "Quarter",
       "resolution_hour": "Hour (average)",
+      "cheap": "Cheapest hours",
+      "cheap_hint": "Mark this many of the cheapest hours to come in the graph, from the hour of now on, of the known prices (not the forecast). 0: none.",
+      "cheap_mode": "Cheapest hours as",
+      "cheap_mode_hint": "Each on its own (the cheapest hours wherever they are), or in a row (the cheapest stretch, for a dishwasher or a car).",
+      "cheap_single": "Single hours",
+      "cheap_block": "Hours in a row",
       "decimals": "Decimals",
       "decimals_hint": "How many decimals the price shows. In øre none or one is enough.",
       "feed_in": "Feed-in price",
@@ -4351,10 +4400,10 @@
     }
    },
    "readme": {
-    "en": "# Elpris (Energi Data Service)\n\nThe Danish electricity price now as a tile, in kr/kWh or øre/kWh, with the graph of today and tomorrow on bigger tiles\nand on a card of its own. It reads the price sensor of the **Energi Data Service** integration (HACS\n`energidataservice` by MTrab) in Home Assistant, such as one with tariffs and taxes added by the integration.\n\nIt runs on every board Tessera supports (`boards: any`), from the CYD to the 10.1-inch screens. It is built on the\n[Electricity price](https://github.com/Heronimonimo/tessera-electricity-price) plugin by Heronimonimo.\n\nTried on a Guition ESP32-4848S040, and on Tessera's bench: the CYD, the Guition, a Waveshare 4.3-inch in portrait\nand the 10.1-inch JC8012P4A1.\n\n## Set up\n\n1. Install the Energi Data Service integration in Home Assistant and set up a price sensor for your area (DK1 or DK2).\n   For the price you really pay, turn on tariffs, taxes and VAT in the integration.\n2. In Tessera, open **Plugins**, choose **Add with a link** and paste this repository's link. Tick your screens; each\n   builds once.\n3. In Layout, place the **Electricity price (Energi Data Service)** tile from the library's Plugins group, at any size\n   from 1x1 up to the whole page. A tile smaller than 2x2 shows the price with the meter bar; from 2x2 up it adds the\n   graph.\n4. In the inspector, choose your price sensor. The list holds only Energi Data Service sensors.\n5. Choose the unit, **kr/kWh** (`2.31`) or **øre/kWh** (`231`), and the number of decimals (in øre at most one).\n6. Tap a bar of the graph to see its price and time slot. Tap it again, or beside the bars, to open the card: the\n   price now, the lowest and highest still to come, the day's average and the graph.\n\n## Your tariff\n\nThe sensor gives the price p in kr/kWh. Leave **Delivery price** empty when the sensor already has tariffs, taxes and\nVAT. For a sensor without them you can type a formula in p:\n\n| Field              | Example         | Means                                   |\n|--------------------|-----------------|-----------------------------------------|\n| **Delivery price** | `(p+0.15)*1.25` | A surcharge on top, then 25% VAT        |\n|                    | `2.10`          | A fixed price                           |\n| **Feed-in price**  | `p-0.10`        | The price minus your supplier's 10 øre  |\n\nA formula has p, numbers (`0.15` or `0,15`), `+ - * /` and brackets. The numbers are in kr/kWh, also when the tile\nshows øre. A formula with a typo shows \"Check the formula\" on the screen in place of the price.\n\n## Good to know\n\n- The graph has a bar for every quarter of an hour when the sensor has quarter prices, else for every hour. Past bars\n  are grey, the bar now is the accent colour, and the bars to come are green, amber or red by their place between the\n  lowest and highest price.\n- Tomorrow's bars appear as soon as the sensor has them (Energi Data Service gets them in the early afternoon).\n- The price of now is the slot of now in today's list, not the sensor's state.\n- On the days the clock changes, the graph has 23 or 25 hours, each where it is on the clock.\n- **Electricity price** can also stand in a page's top bar (editor, \"From plugins\"): the price now of your first price\n  tile.\n"
+    "en": "# Elpris (Energi Data Service)\n\nThe Danish electricity price now as a tile, in kr/kWh or øre/kWh, with the graph of today and tomorrow on bigger tiles\nand on a card of its own. It reads the price sensor of the **Energi Data Service** integration (HACS\n`energidataservice` by MTrab) in Home Assistant, such as one with tariffs and taxes added by the integration.\n\nIt runs on every board Tessera supports (`boards: any`), from the CYD to the 10.1-inch screens. It is built on the\n[Electricity price](https://github.com/Heronimonimo/tessera-electricity-price) plugin by Heronimonimo.\n\nTried on a Guition ESP32-4848S040, and on Tessera's bench: the CYD, the Guition, a Waveshare 4.3-inch in portrait\nand the 10.1-inch JC8012P4A1.\n\n## Set up\n\n1. Install the Energi Data Service integration in Home Assistant and set up a price sensor for your area (DK1 or DK2).\n   For the price you really pay, turn on tariffs, taxes and VAT in the integration.\n2. In Tessera, open **Plugins**, choose **Add with a link** and paste this repository's link. Tick your screens; each\n   builds once.\n3. In Layout, place the **Electricity price (Energi Data Service)** tile from the library's Plugins group, at any size\n   from 1x1 up to the whole page. A tile smaller than 2x2 shows the price with the meter bar; from 2x2 up it adds the\n   graph.\n4. In the inspector, choose your price sensor. The list holds only Energi Data Service sensors.\n5. Choose the unit, **kr/kWh** (`2.31`) or **øre/kWh** (`231`), and the number of decimals (in øre at most one).\n6. Tap a bar of the graph to see its price and time slot. Tap it again, or beside the bars, to open the card: the\n   price now, the lowest and highest still to come, the day's average and the graph.\n\n## Your tariff\n\nThe sensor gives the price p in kr/kWh. Leave **Delivery price** empty when the sensor already has tariffs, taxes and\nVAT. For a sensor without them you can type a formula in p:\n\n| Field              | Example         | Means                                   |\n|--------------------|-----------------|-----------------------------------------|\n| **Delivery price** | `(p+0.15)*1.25` | A surcharge on top, then 25% VAT        |\n|                    | `2.10`          | A fixed price                           |\n| **Feed-in price**  | `p-0.10`        | The price minus your supplier's 10 øre  |\n\nA formula has p, numbers (`0.15` or `0,15`), `+ - * /` and brackets. The numbers are in kr/kWh, also when the tile\nshows øre. A formula with a typo shows \"Check the formula\" on the screen in place of the price.\n\n## Good to know\n\n- The graph has a bar for every quarter of an hour when the sensor has quarter prices, else for every hour. Past bars\n  are grey, the bar now is the accent colour, and the bars to come are green, amber or red by their place between the\n  lowest and highest price.\n- Tomorrow's bars appear as soon as the sensor has them (Energi Data Service gets them in the early afternoon).\n- The price of now is the slot of now in today's list, not the sensor's state.\n- **Cheapest hours** marks the cheapest hours to come (up to 6) with a dark stroke over their bars: each on its own,\n  or as the cheapest stretch in a row (**Cheapest hours as**), handy for a dishwasher or a car. The card names them in\n  its day row. Only known prices count, not the forecast.\n- **Period** can show the next 24 or 48 hours from now in place of whole days. The known prices end at midnight\n  tomorrow (tomorrow's come in the early afternoon); after them the graph shows Carnot's forecast in fainter bars, when\n  the forecast is on in Energi Data Service (its options, with a free Carnot account). The card's low and high come\n  from the known prices only.\n- On the days the clock changes, the graph has 23 or 25 hours, each where it is on the clock.\n- **Electricity price** can also stand in a page's top bar (editor, \"From plugins\"): the price now of your first price\n  tile.\n"
    },
    "changelog": {
-    "en": "# Changelog\n\n## 0.4.0\n\n- **Period** can now show only the hours to come: the next 24 or the next 48 hours from the hour of now, without the\n  hours that have passed. The next 48 go as far as the prices do (midnight tomorrow). On the card, the low and high\n  are those of the hours the graph shows.\n\n## 0.3.0\n\n- New option **Period**: today and tomorrow (48 hours, as before) or today only (24 hours). Nothing to do: tiles\n  keep showing both days until you change it.\n\n## 0.2.0\n\n- New option **Price per**: every quarter of an hour, or each hour as the average of its quarters. The price now,\n  the low, high, average and the graph follow it. Nothing to do: tiles keep showing quarters until you change it.\n\n## 0.1.0\n\n- First version: the electricity price now from an Energi Data Service sensor, in kr/kWh or øre/kWh, with a graph of\n  today and tomorrow on bigger tiles, a card and the price in the top bar.\n- Built on the Electricity price plugin by Heronimonimo (MIT).\n"
+    "en": "# Changelog\n\n## 0.6.0\n\n- New options **Cheapest hours** (0 to 6) and **Cheapest hours as**: the graph marks the cheapest hours to come with\n  a dark stroke over their bars, each on its own or as the cheapest stretch in a row. The card names them in its day\n  row (\"Cheapest 02:00–05:00\"). Only known prices count, not the forecast. Off (0) until you set it.\n\n## 0.5.0\n\n- **Next 24 hours** and **Next 48 hours** now fill the hours after the known prices with Carnot's forecast from\n  Energi Data Service, in fainter bars, so the graph always reaches 24 or 48 hours ahead. Turn on the forecast\n  (Carnot) in the integration's options to get it; without it the graph ends where the prices end, as before.\n- The card's low and high still come from the known prices only.\n\n## 0.4.0\n\n- **Period** can now show only the hours to come: the next 24 or the next 48 hours from the hour of now, without the\n  hours that have passed. The next 48 go as far as the prices do (midnight tomorrow). On the card, the low and high\n  are those of the hours the graph shows.\n\n## 0.3.0\n\n- New option **Period**: today and tomorrow (48 hours, as before) or today only (24 hours). Nothing to do: tiles\n  keep showing both days until you change it.\n\n## 0.2.0\n\n- New option **Price per**: every quarter of an hour, or each hour as the average of its quarters. The price now,\n  the low, high, average and the graph follow it. Nothing to do: tiles keep showing quarters until you change it.\n\n## 0.1.0\n\n- First version: the electricity price now from an Energi Data Service sensor, in kr/kWh or øre/kWh, with a graph of\n  today and tomorrow on bigger tiles, a card and the price in the top bar.\n- Built on the Electricity price plugin by Heronimonimo (MIT).\n"
    },
    "image": "store.png"
   },

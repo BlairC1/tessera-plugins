@@ -37,8 +37,14 @@
    "ratings": 2,
    "homes": 0
   },
-  "energy_flow": {
+  "energidata_price": {
    "likes": 0,
+   "rating": null,
+   "ratings": 1,
+   "homes": 0
+  },
+  "energy_flow": {
+   "likes": 1,
    "rating": null,
    "ratings": 0,
    "homes": 2
@@ -46,8 +52,8 @@
   "flip_clock": {
    "likes": 4,
    "rating": null,
-   "ratings": 1,
-   "homes": 6
+   "ratings": 2,
+   "homes": 7
   },
   "guition_relays": {
    "likes": 0,
@@ -83,7 +89,7 @@
    "likes": 1,
    "rating": null,
    "ratings": 0,
-   "homes": 2
+   "homes": 3
   },
   "scmt": {
    "likes": 0,
@@ -106,13 +112,13 @@
   "tap_sound": {
    "likes": 1,
    "rating": null,
-   "ratings": 1,
+   "ratings": 2,
    "homes": 1
   },
   "thermo_dial": {
    "likes": 1,
    "rating": null,
-   "ratings": 1,
+   "ratings": 2,
    "homes": 0
   },
   "timers": {
@@ -125,13 +131,13 @@
    "likes": 1,
    "rating": null,
    "ratings": 0,
-   "homes": 0
+   "homes": 1
   },
   "voice_assist": {
-   "likes": 3,
-   "rating": 4,
-   "ratings": 3,
-   "homes": 1
+   "likes": 4,
+   "rating": 4.3,
+   "ratings": 4,
+   "homes": 2
   },
   "waste_collection": {
    "likes": 6,
