@@ -8,9 +8,9 @@
    "homes": 1
   },
   "buienradar": {
-   "likes": 0,
-   "rating": null,
-   "ratings": 2,
+   "likes": 1,
+   "rating": 4.3,
+   "ratings": 3,
    "homes": 2
   },
   "cinema": {
@@ -47,13 +47,13 @@
    "likes": 1,
    "rating": null,
    "ratings": 0,
-   "homes": 2
+   "homes": 1
   },
   "flip_clock": {
    "likes": 4,
    "rating": null,
    "ratings": 2,
-   "homes": 7
+   "homes": 8
   },
   "guition_relays": {
    "likes": 0,
@@ -68,9 +68,9 @@
    "homes": 1
   },
   "ov_departures": {
-   "likes": 2,
+   "likes": 3,
    "rating": null,
-   "ratings": 0,
+   "ratings": 1,
    "homes": 0
   },
   "photo_clock": {
@@ -119,7 +119,7 @@
    "likes": 1,
    "rating": null,
    "ratings": 2,
-   "homes": 0
+   "homes": 1
   },
   "timers": {
    "likes": 0,
@@ -137,13 +137,13 @@
    "likes": 4,
    "rating": 4.3,
    "ratings": 4,
-   "homes": 2
+   "homes": 3
   },
   "waste_collection": {
    "likes": 6,
    "rating": null,
    "ratings": 1,
-   "homes": 1
+   "homes": 2
   },
   "waste_overview": {
    "likes": 0,
@@ -158,7 +158,7 @@
    "homes": 0
   },
   "wifi_qr": {
-   "likes": 1,
+   "likes": 2,
    "rating": null,
    "ratings": 0,
    "homes": 0
