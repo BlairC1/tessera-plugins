@@ -1,6 +1,6 @@
 {
  "format": 1,
- "generated": "2026-10-31T23:27:31Z",
+ "generated": "2026-11-03T08:11:49Z",
  "plugin_api": "0.24",
  "blocked": [],
  "featured": [
@@ -8,6 +8,11 @@
   "waste_collection"
  ],
  "claims": {
+  "av_wall_panel_controls": {
+   "repo": "https://github.com/mrecosse/tessera-plugin-av-wall-panel-controls",
+   "repo_id": 1428153427,
+   "path": "."
+  },
   "bt_proxy": {
    "repo": "https://github.com/maxgramser/tessera-plugins",
    "repo_id": 1408945265,
@@ -2540,6 +2545,498 @@
    "changelog": {
     "en": "# Changelog\n\n## 1.0.7 - 2026-10-11\n- In Dark mode the tile's \"Tomorrow\" or \"In 3 days\" is readable again, also after switching between light and dark. On most screens it stayed dark on a dark tile.\n\n## 1.0.6 - 2026-10-09\n- Listed under the topics Home and Calendar & tasks on the Plugins page.\n- Needs a Tessera with plugin API 0.7: update the app and the screen first.\n\n## 1.0.5 - 2026-10-09\n- Its two settings are in the plugin's details on the screen's Plugins tab; the README says so.\n\n## 1.0.4 - 2026-10-08\n- Shows as an Example in the app.\n\n## 1.0.3 - 2026-10-08\n- The README says from when the top bar item shows.\n\n## 1.0.2 - 2026-10-08\n- The tile offers calendars only when you choose its entity.\n\n## 1.0.1 - 2026-10-07\n- Its two settings show in the editor under Screen settings.\n\n## 1.0.0 - 2026-10-07\n- First version: the next collection from a calendar in Home Assistant, on a tile, in the top bar the day before, and\n  on a card with the coming four weeks.\n- A sensor tile of your waste integration can open the card with a tap.\n- Two settings on the screen: whether the top bar says it, and how many days ahead.\n",
     "nl": "# Wijzigingen\n\n## 1.0.7 - 2026-10-11\n- In de donkere modus is \"Morgen\" of \"Over 3 dagen\" op de tegel weer leesbaar, ook na wisselen tussen licht en donker. Op de meeste schermen bleef het donker op een donkere tegel.\n\n## 1.0.6 - 2026-10-09\n- Staat onder de onderwerpen Thuis en Agenda & taken op de pagina Plugins.\n- Vraagt een Tessera met plugin-API 0.7: werk eerst de app en het scherm bij.\n\n## 1.0.5 - 2026-10-09\n- De twee instellingen staan in de details van de plugin op het tabblad Plugins van het scherm; de README zegt het.\n\n## 1.0.4 - 2026-10-08\n- Staat in de app als Voorbeeld.\n\n## 1.0.3 - 2026-10-08\n- De README zegt vanaf wanneer het item in de bovenbalk verschijnt.\n\n## 1.0.2 - 2026-10-08\n- De tegel biedt alleen agenda's aan als je zijn entiteit kiest.\n\n## 1.0.1 - 2026-10-07\n- De twee instellingen staan in de editor onder Scherminstellingen.\n\n## 1.0.0 - 2026-10-07\n- Eerste versie: de volgende ophaaldag uit een agenda in Home Assistant, op een tegel, de dag ervoor in de bovenbalk,\n  en op een kaart met de komende vier weken.\n- Een sensortegel van je afvalintegratie kan de kaart met een tik openen.\n- Twee instellingen op het scherm: of de bovenbalk het zegt, en hoeveel dagen vooruit.\n"
+   },
+   "image": "store.png"
+  },
+  {
+   "id": "av_wall_panel_controls",
+   "repo": "https://github.com/mrecosse/tessera-plugin-av-wall-panel-controls",
+   "repo_id": 1428153427,
+   "path": ".",
+   "label": "community",
+   "status": "ok",
+   "release": {
+    "version": "0.1.1",
+    "sha": "1b450eccd7fa20946612f2b02799a7f949466d89",
+    "date": "2026-10-31",
+    "tag": "v0.1.1"
+   },
+   "manifest": {
+    "id": "av_wall_panel_controls",
+    "version": "0.1.1",
+    "api": "0.12",
+    "icon": "remote-tv",
+    "maintainer": "MrEcosse",
+    "license": "MIT",
+    "stage": "beta",
+    "topics": [
+     "media",
+     "home"
+    ],
+    "requires": {
+     "esphome": "2026.6.2"
+    },
+    "boards": "any",
+    "flash_kb": 16,
+    "permissions": {
+     "home_assistant_actions": [
+      "media_player.media_previous_track",
+      "media_player.media_stop",
+      "media_player.media_play",
+      "media_player.media_pause",
+      "media_player.media_play_pause",
+      "media_player.media_next_track",
+      "media_player.volume_down",
+      "media_player.volume_up",
+      "media_player.volume_mute",
+      "media_player.select_source",
+      "remote.send_command",
+      "remote.turn_on",
+      "webostv.button",
+      "input_select.select_option",
+      "select.select_option",
+      "input_number.set_value",
+      "input_text.set_value",
+      "number.set_value",
+      "script.turn_on",
+      "button.press",
+      "input_button.press",
+      "scene.turn_on",
+      "switch.turn_on",
+      "switch.turn_off",
+      "switch.toggle"
+     ]
+    },
+    "tiles": [
+     {
+      "id": "transport",
+      "name": "transport_tile_name",
+      "icon": "play-pause",
+      "sizes": {
+       "min": "1x1",
+       "max": "9x1"
+      },
+      "memory": 3400,
+      "domains": [
+       "media_player",
+       "remote",
+       "script",
+       "button",
+       "input_button",
+       "switch",
+       "scene",
+       "automation"
+      ],
+      "example": "transport_tile_example",
+      "options": [
+       {
+        "id": "previous",
+        "kind": "text",
+        "label": "transport_key_previous",
+        "hint": "transport_key_previous_hint"
+       },
+       {
+        "id": "stop",
+        "kind": "text",
+        "label": "transport_key_stop",
+        "hint": "transport_key_stop_hint"
+       },
+       {
+        "id": "play",
+        "kind": "text",
+        "label": "transport_key_play",
+        "hint": "transport_key_play_hint"
+       },
+       {
+        "id": "pause",
+        "kind": "text",
+        "label": "transport_key_pause",
+        "hint": "transport_key_pause_hint"
+       },
+       {
+        "id": "play_pause",
+        "kind": "text",
+        "label": "transport_key_play_pause",
+        "hint": "transport_key_play_pause_hint"
+       },
+       {
+        "id": "next",
+        "kind": "text",
+        "label": "transport_key_next",
+        "hint": "transport_key_next_hint"
+       },
+       {
+        "id": "eject",
+        "kind": "text",
+        "label": "transport_key_eject",
+        "hint": "transport_key_eject_hint"
+       }
+      ]
+     },
+     {
+      "id": "dpad",
+      "name": "dpad_tile_name",
+      "icon": "gamepad-variant",
+      "sizes": {
+       "min": "1x1",
+       "max": "3x3"
+      },
+      "memory": 4200,
+      "domains": [
+       "media_player",
+       "remote",
+       "script",
+       "button",
+       "input_button",
+       "switch",
+       "scene",
+       "automation"
+      ],
+      "example": "dpad_tile_example",
+      "options": [
+       {
+        "id": "back",
+        "kind": "text",
+        "label": "dpad_key_back",
+        "hint": "dpad_key_back_hint"
+       },
+       {
+        "id": "up",
+        "kind": "text",
+        "label": "dpad_key_up",
+        "hint": "dpad_key_up_hint"
+       },
+       {
+        "id": "home",
+        "kind": "text",
+        "label": "dpad_key_home",
+        "hint": "dpad_key_home_hint"
+       },
+       {
+        "id": "left",
+        "kind": "text",
+        "label": "dpad_key_left",
+        "hint": "dpad_key_left_hint"
+       },
+       {
+        "id": "ok",
+        "kind": "text",
+        "label": "dpad_key_ok",
+        "hint": "dpad_key_ok_hint"
+       },
+       {
+        "id": "right",
+        "kind": "text",
+        "label": "dpad_key_right",
+        "hint": "dpad_key_right_hint"
+       },
+       {
+        "id": "menu",
+        "kind": "text",
+        "label": "dpad_key_menu",
+        "hint": "dpad_key_menu_hint"
+       },
+       {
+        "id": "down",
+        "kind": "text",
+        "label": "dpad_key_down",
+        "hint": "dpad_key_down_hint"
+       },
+       {
+        "id": "guide",
+        "kind": "text",
+        "label": "dpad_key_guide",
+        "hint": "dpad_key_guide_hint"
+       }
+      ]
+     },
+     {
+      "id": "volume",
+      "name": "volume_tile_name",
+      "icon": "volume-high",
+      "sizes": {
+       "min": "1x1",
+       "max": "3x3"
+      },
+      "memory": 1700,
+      "domains": [
+       "media_player",
+       "remote",
+       "script",
+       "button",
+       "input_button",
+       "switch",
+       "scene",
+       "automation"
+      ],
+      "attributes": [
+       "is_volume_muted"
+      ],
+      "example": "volume_tile_example",
+      "options": [
+       {
+        "id": "style",
+        "kind": "choice",
+        "label": "volume_style",
+        "hint": "volume_style_hint",
+        "default": "volume",
+        "choices": [
+         {
+          "value": "volume",
+          "label": "volume_style_volume"
+         },
+         {
+          "value": "channel",
+          "label": "volume_style_channel"
+         }
+        ]
+       },
+       {
+        "id": "down",
+        "kind": "text",
+        "label": "volume_key_down",
+        "hint": "volume_key_down_hint"
+       },
+       {
+        "id": "mute",
+        "kind": "text",
+        "label": "volume_key_mute",
+        "hint": "volume_key_mute_hint"
+       },
+       {
+        "id": "up",
+        "kind": "text",
+        "label": "volume_key_up",
+        "hint": "volume_key_up_hint"
+       }
+      ]
+     },
+     {
+      "id": "numpad",
+      "name": "numpad_tile_name",
+      "icon": "dialpad",
+      "sizes": {
+       "min": "1x1",
+       "max": "4x4"
+      },
+      "memory": 3300,
+      "domains": [
+       "remote",
+       "media_player",
+       "input_number",
+       "input_text",
+       "input_select",
+       "number",
+       "select",
+       "script"
+      ],
+      "example": "numpad_tile_example",
+      "options": [
+       {
+        "id": "action",
+        "kind": "text",
+        "label": "numpad_action",
+        "hint": "numpad_action_hint"
+       },
+       {
+        "id": "send",
+        "kind": "choice",
+        "label": "numpad_send",
+        "hint": "numpad_send_hint",
+        "default": "each",
+        "choices": [
+         {
+          "value": "each",
+          "label": "numpad_send_each"
+         },
+         {
+          "value": "enter",
+          "label": "numpad_send_enter"
+         }
+        ]
+       },
+       {
+        "id": "enter",
+        "kind": "toggle",
+        "label": "numpad_enter",
+        "hint": "numpad_enter_hint",
+        "default": false
+       },
+       {
+        "id": "enter_action",
+        "kind": "text",
+        "label": "numpad_enter_action",
+        "hint": "numpad_enter_action_hint"
+       },
+       {
+        "id": "clear",
+        "kind": "toggle",
+        "label": "numpad_clear",
+        "hint": "numpad_clear_hint",
+        "default": true
+       },
+       {
+        "id": "max",
+        "kind": "number",
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "unit": "digits",
+        "default": 3,
+        "label": "numpad_max",
+        "hint": "numpad_max_hint"
+       },
+       {
+        "id": "idle",
+        "kind": "number",
+        "min": 0,
+        "max": 60,
+        "step": 1,
+        "unit": "s",
+        "default": 10,
+        "label": "numpad_idle",
+        "hint": "numpad_idle_hint"
+       },
+       {
+        "id": "show",
+        "kind": "toggle",
+        "label": "numpad_show",
+        "hint": "numpad_show_hint",
+        "default": true
+       }
+      ]
+     },
+     {
+      "id": "grid",
+      "name": "grid_tile_name",
+      "icon": "remote-tv",
+      "sizes": {
+       "min": "1x1",
+       "max": "4x4"
+      },
+      "memory": 7200,
+      "domains": [
+       "input_select",
+       "select",
+       "media_player",
+       "remote"
+      ],
+      "attributes": [
+       "options",
+       "source_list",
+       "source",
+       "activity_list",
+       "current_activity"
+      ],
+      "example": "grid_tile_example",
+      "options": [
+       {
+        "id": "hide",
+        "kind": "text",
+        "multiple": 16,
+        "label": "grid_hide",
+        "hint": "grid_hide_hint"
+       }
+      ]
+     }
+    ]
+   },
+   "translations": {
+    "en": {
+     "_meta": {
+      "name": "English"
+     },
+     "screen": {
+      "no_keys": "Give a key an action",
+      "no_action": "Give the pad an action",
+      "type_number": "Type a number",
+      "no_entity": "Choose a selector",
+      "no_options": "No options to show",
+      "eject_word": "Eject"
+     },
+     "app": {
+      "name": "AV wall panel controls",
+      "summary": "Media keys for a wall panel: transport, D-pad, volume or channels, a number pad and a grid of inputs or activities.",
+      "transport_tile_name": "Transport controls",
+      "transport_tile_example": "Skip back, stop, play, pause, skip forward and eject",
+      "transport_key_previous": "Skip back",
+      "transport_key_previous_hint": "The action of this key, such as media_player.media_previous_track. Leave it empty to leave the key out.",
+      "transport_key_stop": "Stop",
+      "transport_key_stop_hint": "Such as media_player.media_stop. Leave it empty to leave the key out.",
+      "transport_key_play": "Play",
+      "transport_key_play_hint": "Such as media_player.media_play. Leave it empty to leave the key out.",
+      "transport_key_pause": "Pause",
+      "transport_key_pause_hint": "Such as media_player.media_pause. Leave it empty to leave the key out.",
+      "transport_key_play_pause": "Play/pause",
+      "transport_key_play_pause_hint": "Such as media_player.media_play_pause. Leave it empty to leave the key out.",
+      "transport_key_next": "Skip forward",
+      "transport_key_next_hint": "Such as media_player.media_next_track. Leave it empty to leave the key out.",
+      "transport_key_eject": "Eject",
+      "transport_key_eject_hint": "Such as remote.send_command command=EJECT, or script.turn_on script.eject_disc to act on another entity. Leave it empty to leave the key out. Until Tessera's icons have eject, the key shows the word.",
+      "dpad_tile_name": "D-pad",
+      "dpad_tile_example": "Arrow keys round an OK key, with back, home, menu and guide in the corners",
+      "dpad_key_back": "Back",
+      "dpad_key_back_hint": "The action of this key, such as remote.send_command command=BACK. Leave it empty to leave the key out.",
+      "dpad_key_up": "Up",
+      "dpad_key_up_hint": "Such as remote.send_command command=UP. Leave it empty to leave the key out.",
+      "dpad_key_home": "Home",
+      "dpad_key_home_hint": "Such as remote.send_command command=HOME. Leave it empty to leave the key out.",
+      "dpad_key_left": "Left",
+      "dpad_key_left_hint": "Such as remote.send_command command=LEFT. Leave it empty to leave the key out.",
+      "dpad_key_ok": "OK",
+      "dpad_key_ok_hint": "Such as remote.send_command command=OK. Leave it empty to leave the key out.",
+      "dpad_key_right": "Right",
+      "dpad_key_right_hint": "Such as remote.send_command command=RIGHT. Leave it empty to leave the key out.",
+      "dpad_key_menu": "Menu",
+      "dpad_key_menu_hint": "Such as remote.send_command command=MENU, or script.turn_on script.open_menu to act on another entity. Leave it empty to leave the key out.",
+      "dpad_key_down": "Down",
+      "dpad_key_down_hint": "Such as remote.send_command command=DOWN. Leave it empty to leave the key out.",
+      "dpad_key_guide": "Guide",
+      "dpad_key_guide_hint": "Such as remote.send_command command=GUIDE. Leave it empty to leave the key out.",
+      "volume_tile_name": "Volume and channel controls",
+      "volume_tile_example": "Quieter, mute and louder, or channel down and up, across a wide tile or down a tall one",
+      "volume_key_down": "Quieter",
+      "volume_key_down_hint": "The action of this key, such as media_player.volume_down (volume) or webostv.button button=CHANNELDOWN (channel). Leave it empty to leave the key out.",
+      "volume_key_mute": "Mute",
+      "volume_key_mute_hint": "Volume style only; the channel style leaves it out. Such as remote.send_command command=MUTE, or media_player.volume_mute is_volume_muted=true. Leave it empty to leave the key out.",
+      "volume_key_up": "Louder",
+      "volume_key_up_hint": "The action of this key, such as media_player.volume_up (volume) or webostv.button button=CHANNELUP (channel). Leave it empty to leave the key out.",
+      "volume_style": "Style",
+      "volume_style_hint": "Volume shows quieter, mute and louder. Channel shows two chevron keys, channel down and up, and leaves the mute key out.",
+      "volume_style_volume": "Volume",
+      "volume_style_channel": "Channel",
+      "numpad_tile_name": "Number pad",
+      "numpad_tile_example": "Keys 0 to 9 with Clear and Enter, for a channel, a TV or a camera",
+      "numpad_action": "Action",
+      "numpad_action_hint": "What a digit sends, with {digit} for the key pressed and {code} for the number so far, such as remote.send_command command=NUM_{digit} or input_number.set_value value={code}.",
+      "numpad_send": "Send",
+      "numpad_send_hint": "Each digit sends the action as soon as its key is tapped. On Enter gathers the digits, shows them, and sends the whole number when Enter is tapped.",
+      "numpad_send_each": "Each digit",
+      "numpad_send_enter": "On Enter",
+      "numpad_enter": "Enter key",
+      "numpad_enter_hint": "Show an Enter key. On Enter, it sends the number; with each digit, it needs its own action below.",
+      "numpad_enter_action": "Enter's action",
+      "numpad_enter_action_hint": "What the Enter key sends instead, such as remote.send_command command=ENTER. Empty: on Enter, the action above with the number.",
+      "numpad_clear": "Clear key",
+      "numpad_clear_hint": "Show a Clear key that empties the number typed so far.",
+      "numpad_max": "Most digits",
+      "numpad_max_hint": "How many digits the number holds. On Enter, further digits are refused; with each digit, the next one starts a new number.",
+      "numpad_idle": "Forget after",
+      "numpad_idle_hint": "Seconds without a tap after which the digits typed so far are forgotten. 0 keeps them until Clear or Enter.",
+      "numpad_show": "Show the number",
+      "numpad_show_hint": "On Enter, show the digits typed so far above the keys. Turn it off to give the keys more room.",
+      "grid_tile_name": "Selector grid",
+      "grid_tile_example": "The options of a selector, a media player's inputs or a remote's activities, as a grid of keys",
+      "grid_hide": "Leave out",
+      "grid_hide_hint": "Options not to show, written as the selector writes them (such as Off). Leave it empty to show them all."
+     }
+    }
+   },
+   "readme": {
+    "en": "# AV wall panel controls\n\nMedia controls for a panel screwed to the wall instead of a remote in the hand. Think of a conference room where the\npresenter needs the display's input, volume and menu without hunting for a remote, a sports bar where staff switch each\nTV to the right match and channel, a restaurant or lounge with background music and a screen behind the bar, a hotel or\nholiday-let lounge, a cinema room, or a shop-floor display.\n\nThe plugin adds five tiles to Tessera, to use side by side on one panel or one at a time:\n\n| Tile | What it is for | Sizes |\n|---|---|---|\n| [Transport controls](#transport-controls) | skip back, stop, play, pause, play/pause, skip forward, eject | 1x1 to 9x1 |\n| [D-pad](#d-pad) | arrows round OK, with back, home, menu and guide | 1x1 to 3x3 |\n| [Volume and channel controls](#volume-and-channel-controls) | quieter, mute, louder; or channel down and up | 1x1 to 3x3 |\n| [Number pad](#number-pad) | channels, TV or camera numbers (not PIN codes) | 1x1 to 4x4 |\n| [Selector grid](#selector-grid) | a selector's options as keys: inputs, activities, sound modes | 1x1 to 4x4 |\n\nThey are **bespoke**: every key runs exactly the Home Assistant action you type, on exactly the entity you choose (the\nselector grid takes its options and actions from the entity itself). So they work with anything Home Assistant can\nreach, including devices where Tessera's built-in tiles and remote card do not fit: an IR or Broadlink blaster, a\nHarmony hub, a streamer behind a script, a projector on a serial bridge, an LG webOS or Samsung TV. The keyed tiles share\none way of writing an action, so learning one means knowing them all, and every tile starts at one cell so it fits any\nlayout. Keys are never smaller than a finger allows on that screen; a larger tile gives them more room.\n\n**Tried on:** the plugin bench (Tessera's own firmware, built for a computer) on the CYD, the 4-inch Guition, the\n4.3-inch Waveshare standing up and the 10.1-inch Guition, light and dark; and on real screens: the 4-inch Guition (with\nan LG webOS TV for the number pad) and the 8-inch Seeed reTerminal D1001.\n\n## Set up\n\n1. In Tessera, open **Plugins**, choose **AV wall panel controls** and tick your screens. Each screen builds once with\n   the plugin.\n2. In Layout, place the tiles you want from the library's Plugins group, and size them by their edges.\n3. In the inspector, choose each tile's entity (a media player, a remote, a helper, a script and so on) and type the\n   actions of its keys (below). The selector grid needs only its entity.\n4. Make sure the screen may perform Home Assistant actions. Tessera turns this on for a screen it added to Home\n   Assistant; for a screen added by hand, tick **Allow the device to perform Home Assistant actions** in the ESPHome\n   integration's options for that device.\n\n## What a key's action can say\n\nA key's text is the action, then optionally an entity of its own, then optionally one field, separated by spaces:\n\n- `media_player.media_play`: the action, on the tile's entity.\n- `remote.send_command command=EJECT`: the action with one field, on the tile's entity. The value runs to the end of\n  the text, so it may contain spaces.\n- `script.turn_on script.eject_disc`: the action on another entity than the tile's.\n- `remote.send_command remote.hall command=up`: both.\n\nA key whose text is not an action shows in red, and a tap sends nothing. At most 64 characters per key, and one field:\nfor an action that needs more, write a script in Home Assistant and give the key `script.turn_on script.<its name>`.\n\n## Transport controls\n\nA strip of media keys on one row: skip back, stop, play, pause, play/pause, skip forward and eject. Each key performs\nthe Home Assistant action you give it, so the same tile drives a media player, a Blu-ray player behind an IR remote, or\nanything a script can reach.\n\nGive a key an action and it appears; leave it empty and it is left out. The keys always keep this order and sit together\nin the middle of the tile. The tile is one cell at least and grows as wide as the page, but never taller than one row.\nOn a tile too narrow for the keys side by side, they wrap onto two or three rows.\n\nEject is not in Tessera's icon set yet, so its key shows the word **Eject**; it will take the icon when the set has it.\n\nActions for each key, for example:\n\n| Key | Media player | IR remote (Broadlink and the like) |\n|---|---|---|\n| Skip back | `media_player.media_previous_track` | `remote.send_command command=PREVIOUS` |\n| Stop | `media_player.media_stop` | `remote.send_command command=STOP` |\n| Play | `media_player.media_play` | `remote.send_command command=PLAY` |\n| Pause | `media_player.media_pause` | `remote.send_command command=PAUSE` |\n| Play/pause | `media_player.media_play_pause` | `remote.send_command command=PLAY_PAUSE` |\n| Skip forward | `media_player.media_next_track` | `remote.send_command command=NEXT` |\n| Eject | (a media player has no eject) | `remote.send_command command=EJECT` |\n\n### On the screen\n\n- A tap on a key lights it blue while the action goes out, or red when it could not be sent (no entity, no action, or\n  the screen may not perform actions).\n- With a media player as the tile's entity, the key of what it does is lit: play and play/pause while it plays, pause\n  while it is paused. The icons go grey while the entity is unavailable.\n- Works on every board, the CYD included. On a single cell, or with all seven keys on a small screen, the keys wrap\n  onto more rows or get smaller; make the tile wider to give them more room.\n\n## D-pad\n\nThe navigation keys of a remote on one tile: up, down, left and right round an OK key, with back, home, menu and guide\nin the corners. Each key performs the Home Assistant action you give it, so the same tile drives a streamer, a\nBlu-ray player behind an IR remote, a set-top box, or anything a script can reach.\n\nIt differs from Tessera's own remote card, which opens when you tap a `remote` tile and shows a ready-made keypad (arrows, OK, Back,\nHome, Play/Pause and volume) for the integrations Tessera knows, such as Android TV, Apple TV and Roku. Use that where\nit fits; use this tile where it does not (Harmony and Broadlink remotes, for example, have no built-in keypad), or when\nyou want the keys on the page itself, in one tap, with your own commands.\n\nGive a key an action and it appears; leave it empty and it is left out, and its place stays empty so the other keys do\nnot move. The keys sit in a block of three by three in the middle of the tile. A key is never higher than 14 mm nor\nwider than half again its height, so a bigger tile only gives them room. The tile is one cell at least and up to 3x3.\n\n```\n back   up    home\n left   OK    right\n menu   down  guide\n```\n\nActions for each key, for example:\n\n| Key | Remote |\n|---|---|\n| Up | `remote.send_command command=UP` |\n| Down | `remote.send_command command=DOWN` |\n| Left | `remote.send_command command=LEFT` |\n| Right | `remote.send_command command=RIGHT` |\n| OK | `remote.send_command command=OK` |\n| Back | `remote.send_command command=BACK` |\n| Home | `remote.send_command command=HOME` |\n| Menu | `remote.send_command command=MENU` |\n| Guide | `remote.send_command command=GUIDE` |\n\n### On the screen\n\n- A tap on a key lights it blue while the action goes out, or red when it could not be sent (no entity, no action, or\n  the screen may not perform actions).\n- The icons go grey while the entity is unavailable.\n- Works on every board, the CYD included. On a single cell the keys get small; make the tile bigger to give them\n  more room.\n\n## Volume and channel controls\n\nThree volume keys on one tile: quieter, mute and louder, or, with the **Channel** style, two keys for channel down and\nup. Each key performs the Home Assistant action you give it, so the same tile drives a media player, an amplifier behind\nan IR remote, or anything a script can reach.\n\nGive a key an action and it appears; leave it empty and it is left out, and the keys that are there share the room. They\nsit together in the middle of the tile:\n\n- On a tile as wide as it is high or wider (1x1, 2x1, 2x2 and so on) they stand **across**, as minus, mute, plus.\n- On a tile taller than it is wide (1x2, 1x3) they stand **down**, louder at the top, then mute, then quieter.\n\nA key is never higher than 14 mm nor wider than half again its height, so a bigger tile only gives the keys room. The\ntile is one cell at least and up to 3x3.\n\nActions for each key, for example:\n\n| Key | Media player | IR remote or amplifier |\n|---|---|---|\n| Quieter | `media_player.volume_down` | `remote.send_command command=VOLUME_DOWN` |\n| Mute | `media_player.volume_mute is_volume_muted=true` | `remote.send_command command=MUTE` |\n| Louder | `media_player.volume_up` | `remote.send_command command=VOLUME_UP` |\n\n### Volume or channel: the Style option\n\n**Style** chooses what the keys look like. **Volume**, the default, is everything above. **Channel** uses\nthe same tile for channel down and up: the **Quieter** key becomes channel down and the **Louder** key channel up, drawn\nas chevrons (left and right across a tile, down and up in a column), and the mute key is left out whatever it holds. The\nactions are still whatever you type, so the tile is as bespoke as before.\n\nPut a volume tile and a channel tile on one page if you like: both are tiles of this plugin.\n\n| For | Channel down | Channel up |\n|---|---|---|\n| An LG webOS TV | `webostv.button button=CHANNELDOWN` | `webostv.button button=CHANNELUP` |\n| An IR or Android TV remote | `remote.send_command command=CHANNEL_DOWN` | `remote.send_command command=CHANNEL_UP` |\n| A media player on Live TV | `media_player.media_previous_track` | `media_player.media_next_track` |\n\nThe last row follows the integrations' own behaviour (on an LG TV on Live TV, next and previous track change channel);\ncheck it on your own device. The command names of a remote depend on its integration or learned codes.\n\n### On the screen\n\n- A tap on a key lights it blue while the action goes out, or red when it could not be sent (no entity, no action, or\n  the screen may not perform actions).\n- With a media player as the tile's entity, the mute key is lit while the player is muted.\n- The icons go grey while the entity is unavailable.\n- One tap sends one step: the tile does not repeat while a finger is held, because a plugin's tile only gets taps.\n  How big a step is depends on the integration.\n- Works on every board, the CYD included. On a single cell of a small screen the keys get small; make the tile bigger\n  to give them more room.\n\n### Limiting the volume\n\nThe tile sends the actions you give it and has no volume limit of its own. Home Assistant has no built-in per-player\nlimit either, so where a top or bottom level matters (a shop, a bar, a conference room, a child's room), put the limit\nwhere it cannot be skipped. From the strongest:\n\n1. **On the device.** Many amplifiers, receivers and speakers have a \"maximum volume\" setting in their own app. The\n   hardware enforces it whatever sends the command, whether this tile, Home Assistant or the device's own remote.\n2. **A wrapper player in Home Assistant.** The [Universal media\n   player](https://www.home-assistant.io/integrations/universal/) can replace a player's `volume_set`, `volume_up`,\n   `volume_down` and `volume_mute` commands. Point the tile's entity (or each key) at the wrapper instead of the real\n   player. An untested sketch that keeps `volume_set` between 20 % and 60 %:\n\n   ```yaml\n   media_player:\n     - platform: universal\n       name: Clamped receiver\n       children:\n         - media_player.receiver\n       commands:\n         volume_set:\n           action: media_player.volume_set\n           target:\n             entity_id: media_player.receiver\n           data:\n             volume_level: \"{{ [[volume_level, 0.2] | max, 0.6] | min }}\"\n       attributes:\n         volume_level: media_player.receiver|volume_level\n   ```\n\n   The docs do not describe clamping, so check it on your own system. A plain `volume_up` or `volume_down` steps by\n   whatever the integration decides and can pass the limit, so override those too, or give the keys a script that\n   checks the level first (`script.turn_on script.volume_up_limited`).\n3. **Put it back afterwards.** A blueprint such as [Media Player - Volume\n   limit](https://community.home-assistant.io/t/media-player-volume-limit) watches `volume_level` and resets the player\n   when it goes above a limit. It reacts after the fact, so there is a short spike, and it covers the upper limit only.\n\nA slider on Tessera's own volume tile can be limited with an `input_number` helper: Home Assistant enforces the\nhelper's minimum and maximum, and an automation copies its value to the player. That limits the slider only, so use it\ntogether with one of the above.\n\n## Number pad\n\nThe keys 0 to 9 on one tile, with an optional Clear and Enter, for any number a Home Assistant action takes: a TV\nchannel, the TV to switch to in a bar, a camera to bring up on a screen, a preset, a room. You type one action with the\nnumber's place marked in it, and choose when it is sent.\n\nIt is not for PIN codes. Tessera's own lock and alarm tiles open a keypad of their own that shows dots, counts wrong\ncodes, locks the keypad after repeated mistakes and never stores or logs the code. This tile has none of that, so leave\ncodes for locks and alarms to the built-in keypad.\n\nThe keys follow a telephone's layout (1 2 3, 4 5 6, 7 8 9, then Clear, 0 and Enter) where they come out large enough. On\na wide, low tile they go in rows of four or six instead, with Clear and Enter at the end. A key is never higher than\n14 mm nor wider than half again its height. The tile is one cell at least and up to 4x4; twelve keys on one cell are\nsmall, so 2x2 or taller is comfortable.\n\n### The action, and where the number goes\n\nThe action text is the action, then optionally an entity of its own, then optionally one field (`name=value`). In the\nfield's value, two words are replaced when a key is tapped:\n\n| Word | Is replaced by |\n|---|---|\n| `{digit}` | the key just tapped: `7` |\n| `{code}` | the digits typed so far: `407` |\n\nThey work only in the field's value, not in the action's name or in the entity. A field's value runs to the end of the\ntext and may hold spaces. At most 64 characters once the number is in it.\n\n### When it is sent\n\n**Each digit** sends the action as soon as a digit is tapped. This is right when the device collects the digits itself,\nas a TV does for a channel:\n\n| For | Action | Enter's action |\n|---|---|---|\n| An IR or Android TV remote | `remote.send_command command=NUM_{digit}` | `remote.send_command command=ENTER` |\n\nAn LG webOS TV collects the digits itself, so it suits this mode. Choose the TV's media player as the entity, then:\n\n| For | Action | Enter's action |\n|---|---|---|\n| An LG webOS TV (LG webOS integration) | `webostv.button button={digit}` | `webostv.button button=ENTER` |\n\nThe TV must be on, and the entity you choose must be the live one (an old registration of the same TV does nothing).\n\nIn this mode an Enter key needs an **Enter's action** of its own. `{code}` is also available, as the digits tapped so far.\n\n**On Enter** gathers the digits, shows them above the keys, and sends the whole number when Enter is tapped. This is\nright when one action takes the whole number, which is how to switch between TVs or cameras:\n\n| For | Action |\n|---|---|\n| A helper that an automation reads | `input_number.set_value value={code}` |\n| A text helper | `input_text.set_value value={code}` |\n| A choice that takes the number | `input_select.select_option option=TV {code}` |\n| A media player's source | `media_player.select_source source=Input {code}` |\n\nA tile can send only one field, so for anything more, point the action at a helper and let a Home Assistant automation\n(or a script it triggers) do the rest: it sees the number arrive and switches the TV, the camera or the channel.\n\nEnter with nothing typed does nothing and shows red. If **Enter's action** is filled in, Enter sends that instead of the\naction above; use it to send the number somewhere else, or a plain Enter command.\n\n### On the screen\n\n- A tap on a key lights it blue while the action goes out, or red when it could not be sent (no entity, an action that\n  is not one, or the screen may not perform actions). An action that is not one shows every digit in red.\n- **Most digits** (1 to 8, default 3): on Enter, further digits are refused; sending each digit, the next one starts a\n  new number.\n- **Forget after** (default 10 seconds, 0 for never): digits typed and not sent are forgotten after this time without a\n  tap, so the next person starts afresh. Clear empties them at once, and sending the number does too.\n- **Show the number** (on Enter): the digits typed so far above the keys. Turn it off to give the keys the room.\n- The keys go grey while the entity is unavailable.\n- Works on every board, the CYD included. Where a tile is small, the keys are small; give it more room.\n\n## Selector grid\n\nEvery option of a selector on screen at once, as a grid of keys. Tessera's own tile for a selector shows the option in\nuse and opens a list when you tap it; this tile keeps all the options on the page, so one tap picks one. Use it to choose\nthe input of a TV or amplifier, an activity (Watch TV, Blu-ray, Music), a sound mode, or any list of favourites you keep\nin a helper.\n\nIt works with anything that has a list: the options come from the entity itself, so there is nothing to type. The\noption in use is lit, and follows the entity when it changes anywhere else: on another screen, from a remote, or from an\nautomation.\n\nWhen the options do not all fit at a comfortable size, a strip along the bottom of the tile holds an arrow either side of\nthe page number: tap the left half to go back a page, the right half to go on (from the last page round to the first).\nThe tile opens on the page of the option in use. A key is never smaller than a finger (about 16 x 9 mm) and the tile\nshows at most twelve at once, so a larger tile shows more of them per page. The tile is one cell at least and up to 4x4;\na single cell shows one or two options a page, so 2x1 or 2x2 is where it shines.\n\n### Where the options come from\n\nThe tile reads the list from the entity you choose and sends the matching action when a key is tapped:\n\n| Entity | Its options | The one in use | A tap sends |\n|---|---|---|---|\n| `input_select` (a helper) | `options` | its state | `input_select.select_option option=<the key>` |\n| `select` | `options` | its state | `select.select_option option=<the key>` |\n| `media_player` | `source_list`, its inputs | `source` | `media_player.select_source source=<the key>` |\n| `remote` (a Harmony hub and others) | `activity_list` | `current_activity` | `remote.turn_on activity=<the key>` |\n\nThe names on the keys are the options exactly as Home Assistant has them. To use your own words, or a list Home\nAssistant does not give (favourites, a set of TV channels, the cameras of a CCTV wall), make an `input_select` helper with\nthose options and an automation that acts on it when it changes.\n\n### Example: activities, Harmony-style\n\nKeep the activities of a room in an `input_select` helper (Off, Watch TV, Watch Blu-ray, Music) and let an automation, or\na blueprint such as WHARP's Start Activity, start the activity when the helper changes: turn the devices on, switch the\ninputs, set the volume. Point a Selector grid at the helper, leave out `Off` if you have a separate power key, and every\nactivity is one tap away on the wall. The key of the activity that is running stays lit, whether it was started from the\npanel, from a remote or by an automation.\n\n### On the screen\n\n- The option in use is a blue key. A tap lights the key blue while the action goes out, or red when it could not be sent\n  (no entity, or the screen may not perform actions).\n- Words on a key take up to two lines where the key is high enough, one line where it is not, and end in dots when they\n  do not fit.\n- The keys go grey while the entity is unavailable. Many TVs give no inputs while they are off; the tile then says there\n  are no options to show until the TV is on.\n- Works on every board, the CYD included. Where a tile is small, it shows fewer options a page; give it more room.\n\n## Good to know\n\n- A key runs whatever action you type for it, on whatever entity you name. The manifest lists the actions the tiles are\n  made for, but the screen does not hold a key to that list: anyone who can edit the layout can make a key perform any\n  action the screen is allowed to. The selector grid sends only its four selecting actions.\n- A tile only gets taps: no key repeats while a finger is held, and no tile scrolls (a swipe on a Tessera screen changes\n  the page). The selector grid pages with taps instead.\n- Nothing is stored and nothing leaves your home: the tiles use no internet service and no Home Assistant entity but\n  the ones you choose. The number pad keeps the digits typed only until they are sent or forgotten.\n\n## How it works\n\n- `tessera-plugin.yaml`: five tiles (`transport`, `dpad`, `volume`, `numpad`, `grid`), each belonging to an entity of\n  the domains it acts on, with an option per key.\n- `components/av_wall_panel_controls/panel_command.h`: reads a key's text into an action, a target and a field; one\n  parser for every keyed tile.\n- One file per tile (`transport.cpp`, `dpad.cpp`, `volume.cpp`, `numpad.cpp`, `grid.cpp`), each in a namespace of its\n  own: it lays its keys out in the middle of the tile, finds the key under the finger (`tessera::tap_point`) and sends\n  its action (`tessera::action`). The selector grid reads the entity's list attributes and keeps its options in the\n  screen's PSRAM where the board has it.\n"
+   },
+   "changelog": {
+    "en": "# Changelog\n\n## 0.1.1\n\n- Builds on Tessera 0.4.91 and later (plugin API 0.24), which took away the key and value form of `tessera::action`.\n  A key's field now goes as a JSON object, its value as the text typed, as before.\n- Selector grid: the twelve keys, the arrows, the page number and the hint are made once when the tile is; a change of\n  the options only lays them out again and shows or hides them, instead of deleting and making them anew.\n- Selector grid: the options that come are compared with the ones kept as they arrive, so the tile keeps one list of up\n  to 64, not two; it declares the 7.2 KB that takes (it said 7 KB and could keep 9.5).\n\n## 0.1.0\n- First version, as one plugin of five tiles: transport controls, a D-pad, volume and channel controls, a number pad and\n  a selector grid. They were four plugins of their own before (transport_controls 0.2.1, d_pad 0.1.2, volume_controls\n  0.1.2, number_pad 0.1.1) and a fifth that was never released; one plugin keeps the command parser in flash once and\n  gives one release to follow.\n- Transport controls: the keys wrap onto two or three rows on a tile too narrow for them side by side (the 0.2.1\n  release of the old plugin had gone out without it). Eject shows the word until Tessera's icon set has the symbol,\n  instead of a drawing of the plugin's own.\n- Volume and channel controls: a Style option, Volume or Channel (two chevron keys, no mute).\n- The memory each tile declares counts what it keeps: about 180 bytes a key and 228 for each key's action.\n- The manifest names every action the README uses, `webostv.button` included.\n"
    },
    "image": "store.png"
   },
