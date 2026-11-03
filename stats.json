@@ -20,13 +20,13 @@
    "homes": 0
   },
   "custom_card": {
-   "likes": 10,
+   "likes": 11,
    "rating": 3.7,
    "ratings": 3,
-   "homes": 10
+   "homes": 11
   },
   "dwd_rain": {
-   "likes": 0,
+   "likes": 1,
    "rating": null,
    "ratings": 0,
    "homes": 2
@@ -53,7 +53,7 @@
    "likes": 4,
    "rating": 2,
    "ratings": 5,
-   "homes": 12
+   "homes": 13
   },
   "guition_relays": {
    "likes": 0,
@@ -104,19 +104,19 @@
    "homes": 3
   },
   "status_tile": {
-   "likes": 0,
+   "likes": 1,
    "rating": null,
    "ratings": 1,
    "homes": 2
   },
   "tankerkoenig": {
-   "likes": 1,
+   "likes": 2,
    "rating": null,
    "ratings": 1,
    "homes": 0
   },
   "tap_sound": {
-   "likes": 1,
+   "likes": 2,
    "rating": null,
    "ratings": 1,
    "homes": 4
@@ -125,7 +125,7 @@
    "likes": 2,
    "rating": null,
    "ratings": 2,
-   "homes": 4
+   "homes": 5
   },
   "timers": {
    "likes": 0,
@@ -146,13 +146,13 @@
    "homes": 5
   },
   "waste_collection": {
-   "likes": 6,
+   "likes": 7,
    "rating": null,
    "ratings": 1,
    "homes": 2
   },
   "waste_overview": {
-   "likes": 1,
+   "likes": 2,
    "rating": null,
    "ratings": 1,
    "homes": 2
@@ -163,10 +163,16 @@
    "ratings": 0,
    "homes": 1
   },
+  "weather_warnings": {
+   "likes": 1,
+   "rating": null,
+   "ratings": 0,
+   "homes": 0
+  },
   "wifi_qr": {
    "likes": 2,
    "rating": null,
-   "ratings": 0,
+   "ratings": 1,
    "homes": 0
   },
   "world_clock": {
