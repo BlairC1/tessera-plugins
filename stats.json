@@ -11,7 +11,7 @@
    "likes": 1,
    "rating": 4.3,
    "ratings": 3,
-   "homes": 4
+   "homes": 6
   },
   "cinema": {
    "likes": 2,
@@ -23,19 +23,19 @@
    "likes": 11,
    "rating": 3.7,
    "ratings": 3,
-   "homes": 11
+   "homes": 13
   },
   "dwd_rain": {
    "likes": 1,
    "rating": null,
    "ratings": 0,
-   "homes": 2
+   "homes": 3
   },
   "electricity_price": {
    "likes": 1,
    "rating": null,
    "ratings": 2,
-   "homes": 1
+   "homes": 2
   },
   "energidata_price": {
    "likes": 0,
@@ -53,7 +53,7 @@
    "likes": 4,
    "rating": 2,
    "ratings": 5,
-   "homes": 13
+   "homes": 14
   },
   "guition_relays": {
    "likes": 0,
@@ -65,7 +65,7 @@
    "likes": 3,
    "rating": null,
    "ratings": 0,
-   "homes": 5
+   "homes": 6
   },
   "ov_departures": {
    "likes": 3,
@@ -101,25 +101,25 @@
    "likes": 1,
    "rating": null,
    "ratings": 1,
-   "homes": 3
+   "homes": 5
   },
   "status_tile": {
    "likes": 1,
    "rating": null,
    "ratings": 1,
-   "homes": 2
+   "homes": 5
   },
   "tankerkoenig": {
    "likes": 2,
    "rating": null,
    "ratings": 1,
-   "homes": 0
+   "homes": 1
   },
   "tap_sound": {
    "likes": 2,
    "rating": null,
    "ratings": 1,
-   "homes": 4
+   "homes": 5
   },
   "thermo_dial": {
    "likes": 2,
@@ -131,37 +131,37 @@
    "likes": 0,
    "rating": null,
    "ratings": 1,
-   "homes": 3
+   "homes": 5
   },
   "vinyl_deck": {
    "likes": 1,
    "rating": null,
    "ratings": 0,
-   "homes": 1
+   "homes": 2
   },
   "voice_assist": {
    "likes": 4,
    "rating": 4.3,
    "ratings": 4,
-   "homes": 5
+   "homes": 6
   },
   "waste_collection": {
    "likes": 7,
    "rating": null,
    "ratings": 1,
-   "homes": 2
+   "homes": 4
   },
   "waste_overview": {
    "likes": 2,
    "rating": null,
    "ratings": 1,
-   "homes": 2
+   "homes": 3
   },
   "waze_traveltime": {
    "likes": 2,
    "rating": null,
    "ratings": 0,
-   "homes": 1
+   "homes": 2
   },
   "weather_warnings": {
    "likes": 1,
