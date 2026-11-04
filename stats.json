@@ -59,7 +59,7 @@
    "likes": 0,
    "rating": null,
    "ratings": 1,
-   "homes": 6
+   "homes": 7
   },
   "new_music": {
    "likes": 3,
@@ -83,13 +83,13 @@
    "likes": 3,
    "rating": null,
    "ratings": 0,
-   "homes": 1
+   "homes": 2
   },
   "picture_frame": {
    "likes": 1,
    "rating": null,
    "ratings": 0,
-   "homes": 6
+   "homes": 7
   },
   "scmt": {
    "likes": 0,
@@ -101,13 +101,13 @@
    "likes": 1,
    "rating": null,
    "ratings": 1,
-   "homes": 7
+   "homes": 8
   },
   "status_tile": {
    "likes": 1,
    "rating": null,
    "ratings": 1,
-   "homes": 7
+   "homes": 9
   },
   "tankerkoenig": {
    "likes": 2,
@@ -125,13 +125,13 @@
    "likes": 2,
    "rating": null,
    "ratings": 2,
-   "homes": 6
+   "homes": 7
   },
   "timers": {
    "likes": 0,
    "rating": null,
    "ratings": 1,
-   "homes": 6
+   "homes": 7
   },
   "toothbrush": {
    "likes": 0,
@@ -143,7 +143,7 @@
    "likes": 1,
    "rating": null,
    "ratings": 0,
-   "homes": 3
+   "homes": 4
   },
   "voice_assist": {
    "likes": 4,
@@ -154,14 +154,14 @@
   "waste_collection": {
    "likes": 8,
    "rating": null,
-   "ratings": 1,
+   "ratings": 2,
    "homes": 7
   },
   "waste_overview": {
    "likes": 2,
    "rating": null,
    "ratings": 1,
-   "homes": 2
+   "homes": 3
   },
   "waze_traveltime": {
    "likes": 2,
@@ -173,7 +173,7 @@
    "likes": 1,
    "rating": null,
    "ratings": 0,
-   "homes": 0
+   "homes": 1
   },
   "wifi_qr": {
    "likes": 2,
