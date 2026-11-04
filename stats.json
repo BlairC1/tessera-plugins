@@ -1,17 +1,23 @@
 {
  "format": 1,
  "plugins": {
+  "av_wall_panel_controls": {
+   "likes": 0,
+   "rating": null,
+   "ratings": 0,
+   "homes": 1
+  },
   "bt_proxy": {
    "likes": 0,
    "rating": null,
    "ratings": 1,
-   "homes": 4
+   "homes": 5
   },
   "buienradar": {
    "likes": 1,
    "rating": 4.3,
    "ratings": 3,
-   "homes": 7
+   "homes": 8
   },
   "cinema": {
    "likes": 2,
@@ -21,9 +27,9 @@
   },
   "custom_card": {
    "likes": 14,
-   "rating": 4,
-   "ratings": 4,
-   "homes": 15
+   "rating": 4.5,
+   "ratings": 8,
+   "homes": 17
   },
   "dwd_rain": {
    "likes": 1,
@@ -47,13 +53,13 @@
    "likes": 4,
    "rating": null,
    "ratings": 0,
-   "homes": 4
+   "homes": 5
   },
   "flip_clock": {
-   "likes": 5,
-   "rating": 2.4,
-   "ratings": 7,
-   "homes": 22
+   "likes": 8,
+   "rating": 3.4,
+   "ratings": 11,
+   "homes": 23
   },
   "guition_relays": {
    "likes": 0,
@@ -65,7 +71,7 @@
    "likes": 3,
    "rating": null,
    "ratings": 0,
-   "homes": 6
+   "homes": 7
   },
   "ov_departures": {
    "likes": 3,
@@ -83,13 +89,13 @@
    "likes": 3,
    "rating": null,
    "ratings": 0,
-   "homes": 2
+   "homes": 3
   },
   "picture_frame": {
    "likes": 1,
    "rating": null,
-   "ratings": 0,
-   "homes": 7
+   "ratings": 1,
+   "homes": 9
   },
   "scmt": {
    "likes": 0,
@@ -101,7 +107,7 @@
    "likes": 1,
    "rating": null,
    "ratings": 1,
-   "homes": 8
+   "homes": 10
   },
   "status_tile": {
    "likes": 1,
@@ -119,7 +125,7 @@
    "likes": 2,
    "rating": null,
    "ratings": 1,
-   "homes": 6
+   "homes": 7
   },
   "thermo_dial": {
    "likes": 2,
@@ -131,7 +137,7 @@
    "likes": 0,
    "rating": null,
    "ratings": 1,
-   "homes": 8
+   "homes": 9
   },
   "toothbrush": {
    "likes": 0,
@@ -142,20 +148,20 @@
   "vinyl_deck": {
    "likes": 1,
    "rating": null,
-   "ratings": 0,
-   "homes": 4
+   "ratings": 1,
+   "homes": 5
   },
   "voice_assist": {
-   "likes": 4,
-   "rating": 4.3,
-   "ratings": 4,
-   "homes": 8
+   "likes": 5,
+   "rating": 4.4,
+   "ratings": 5,
+   "homes": 9
   },
   "waste_collection": {
    "likes": 8,
-   "rating": null,
-   "ratings": 2,
-   "homes": 8
+   "rating": 4.8,
+   "ratings": 4,
+   "homes": 10
   },
   "waste_overview": {
    "likes": 2,
