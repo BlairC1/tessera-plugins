@@ -11,7 +11,7 @@
    "likes": 1,
    "rating": 4.3,
    "ratings": 3,
-   "homes": 6
+   "homes": 7
   },
   "cinema": {
    "likes": 2,
@@ -23,19 +23,19 @@
    "likes": 14,
    "rating": 4,
    "ratings": 4,
-   "homes": 14
+   "homes": 15
   },
   "dwd_rain": {
    "likes": 1,
    "rating": null,
-   "ratings": 0,
+   "ratings": 1,
    "homes": 2
   },
   "electricity_price": {
    "likes": 1,
    "rating": null,
    "ratings": 2,
-   "homes": 2
+   "homes": 3
   },
   "energidata_price": {
    "likes": 0,
@@ -47,18 +47,18 @@
    "likes": 4,
    "rating": null,
    "ratings": 0,
-   "homes": 3
+   "homes": 4
   },
   "flip_clock": {
    "likes": 5,
-   "rating": 2,
-   "ratings": 6,
-   "homes": 20
+   "rating": 2.4,
+   "ratings": 7,
+   "homes": 22
   },
   "guition_relays": {
    "likes": 0,
    "rating": null,
-   "ratings": 1,
+   "ratings": 2,
    "homes": 7
   },
   "new_music": {
@@ -107,7 +107,7 @@
    "likes": 1,
    "rating": null,
    "ratings": 1,
-   "homes": 9
+   "homes": 8
   },
   "tankerkoenig": {
    "likes": 2,
@@ -131,7 +131,7 @@
    "likes": 0,
    "rating": null,
    "ratings": 1,
-   "homes": 7
+   "homes": 8
   },
   "toothbrush": {
    "likes": 0,
@@ -155,7 +155,7 @@
    "likes": 8,
    "rating": null,
    "ratings": 2,
-   "homes": 7
+   "homes": 8
   },
   "waste_overview": {
    "likes": 2,
