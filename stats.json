@@ -29,7 +29,7 @@
    "likes": 15,
    "rating": 4.5,
    "ratings": 8,
-   "homes": 19
+   "homes": 20
   },
   "dwd_rain": {
    "likes": 1,
@@ -39,15 +39,15 @@
   },
   "electricity_price": {
    "likes": 2,
-   "rating": null,
-   "ratings": 2,
-   "homes": 3
+   "rating": 3.7,
+   "ratings": 3,
+   "homes": 4
   },
   "energidata_price": {
    "likes": 0,
    "rating": null,
    "ratings": 1,
-   "homes": 1
+   "homes": 2
   },
   "energy_flow": {
    "likes": 4,
@@ -57,15 +57,15 @@
   },
   "flip_clock": {
    "likes": 8,
-   "rating": 3.4,
-   "ratings": 11,
-   "homes": 25
+   "rating": 3.5,
+   "ratings": 12,
+   "homes": 26
   },
   "guition_relays": {
    "likes": 0,
    "rating": 5,
    "ratings": 4,
-   "homes": 7
+   "homes": 8
   },
   "new_music": {
    "likes": 3,
@@ -83,7 +83,7 @@
    "likes": 2,
    "rating": null,
    "ratings": 0,
-   "homes": 4
+   "homes": 5
   },
   "photo_slideshow": {
    "likes": 3,
@@ -131,7 +131,7 @@
    "likes": 2,
    "rating": null,
    "ratings": 2,
-   "homes": 8
+   "homes": 9
   },
   "timers": {
    "likes": 0,
@@ -143,7 +143,7 @@
    "likes": 0,
    "rating": null,
    "ratings": 0,
-   "homes": 1
+   "homes": 2
   },
   "vinyl_deck": {
    "likes": 1,
@@ -152,16 +152,16 @@
    "homes": 5
   },
   "voice_assist": {
-   "likes": 6,
-   "rating": 4.5,
-   "ratings": 6,
+   "likes": 7,
+   "rating": 4.4,
+   "ratings": 7,
    "homes": 11
   },
   "waste_collection": {
    "likes": 8,
-   "rating": 4.8,
-   "ratings": 6,
-   "homes": 10
+   "rating": 4.7,
+   "ratings": 7,
+   "homes": 11
   },
   "waste_overview": {
    "likes": 3,
@@ -184,14 +184,14 @@
   "wifi_qr": {
    "likes": 2,
    "rating": null,
-   "ratings": 1,
+   "ratings": 2,
    "homes": 1
   },
   "world_clock": {
    "likes": 2,
    "rating": null,
    "ratings": 0,
-   "homes": 3
+   "homes": 4
   }
  }
 }
