@@ -9,15 +9,15 @@
   },
   "bt_proxy": {
    "likes": 0,
-   "rating": null,
-   "ratings": 1,
-   "homes": 5
+   "rating": 5,
+   "ratings": 3,
+   "homes": 6
   },
   "buienradar": {
    "likes": 2,
-   "rating": 3.8,
-   "ratings": 4,
-   "homes": 8
+   "rating": 4,
+   "ratings": 5,
+   "homes": 9
   },
   "cinema": {
    "likes": 2,
@@ -27,8 +27,8 @@
   },
   "custom_card": {
    "likes": 15,
-   "rating": 4.6,
-   "ratings": 9,
+   "rating": 4.5,
+   "ratings": 11,
    "homes": 20
   },
   "dwd_rain": {
@@ -56,28 +56,28 @@
    "homes": 5
   },
   "flip_clock": {
-   "likes": 8,
-   "rating": 3.5,
-   "ratings": 12,
-   "homes": 26
+   "likes": 9,
+   "rating": 3.6,
+   "ratings": 15,
+   "homes": 27
   },
   "guition_relays": {
    "likes": 0,
    "rating": 5,
    "ratings": 6,
-   "homes": 9
+   "homes": 10
   },
   "new_music": {
    "likes": 3,
    "rating": null,
    "ratings": 0,
-   "homes": 8
+   "homes": 10
   },
   "ov_departures": {
    "likes": 3,
    "rating": null,
    "ratings": 1,
-   "homes": 0
+   "homes": 1
   },
   "photo_clock": {
    "likes": 2,
@@ -95,7 +95,7 @@
    "likes": 1,
    "rating": null,
    "ratings": 1,
-   "homes": 9
+   "homes": 10
   },
   "pollen": {
    "likes": 1,
@@ -111,15 +111,15 @@
   },
   "screen_camera": {
    "likes": 2,
-   "rating": null,
-   "ratings": 2,
-   "homes": 12
+   "rating": 4.5,
+   "ratings": 6,
+   "homes": 13
   },
   "status_tile": {
    "likes": 1,
    "rating": 4,
    "ratings": 5,
-   "homes": 9
+   "homes": 10
   },
   "tankerkoenig": {
    "likes": 2,
@@ -131,7 +131,7 @@
    "likes": 2,
    "rating": 5,
    "ratings": 3,
-   "homes": 8
+   "homes": 9
   },
   "thermo_dial": {
    "likes": 2,
@@ -158,15 +158,15 @@
    "homes": 5
   },
   "voice_assist": {
-   "likes": 7,
-   "rating": 4.5,
-   "ratings": 8,
-   "homes": 11
-  },
-  "waste_collection": {
    "likes": 8,
    "rating": 4.6,
-   "ratings": 8,
+   "ratings": 9,
+   "homes": 13
+  },
+  "waste_collection": {
+   "likes": 9,
+   "rating": 4.7,
+   "ratings": 9,
    "homes": 13
   },
   "waste_overview": {
@@ -176,9 +176,9 @@
    "homes": 4
   },
   "waze_traveltime": {
-   "likes": 2,
+   "likes": 3,
    "rating": null,
-   "ratings": 0,
+   "ratings": 1,
    "homes": 2
   },
   "weather_warnings": {
@@ -191,7 +191,7 @@
    "likes": 2,
    "rating": null,
    "ratings": 2,
-   "homes": 1
+   "homes": 2
   },
   "world_clock": {
    "likes": 2,
