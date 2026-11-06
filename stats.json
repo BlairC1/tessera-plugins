@@ -27,9 +27,9 @@
   },
   "custom_card": {
    "likes": 15,
-   "rating": 4.5,
-   "ratings": 11,
-   "homes": 20
+   "rating": 4.4,
+   "ratings": 12,
+   "homes": 21
   },
   "dwd_rain": {
    "likes": 1,
@@ -39,15 +39,15 @@
   },
   "electricity_price": {
    "likes": 2,
-   "rating": 3.7,
-   "ratings": 3,
+   "rating": 4.2,
+   "ratings": 5,
    "homes": 4
   },
   "energidata_price": {
    "likes": 0,
    "rating": null,
    "ratings": 1,
-   "homes": 2
+   "homes": 3
   },
   "energy_flow": {
    "likes": 5,
@@ -56,9 +56,9 @@
    "homes": 5
   },
   "flip_clock": {
-   "likes": 9,
-   "rating": 3.6,
-   "ratings": 15,
+   "likes": 10,
+   "rating": 3.8,
+   "ratings": 18,
    "homes": 27
   },
   "guition_relays": {
@@ -82,8 +82,8 @@
   "photo_clock": {
    "likes": 2,
    "rating": null,
-   "ratings": 0,
-   "homes": 6
+   "ratings": 1,
+   "homes": 7
   },
   "photo_slideshow": {
    "likes": 3,
@@ -113,13 +113,13 @@
    "likes": 2,
    "rating": 4.5,
    "ratings": 6,
-   "homes": 13
+   "homes": 14
   },
   "status_tile": {
    "likes": 1,
-   "rating": 4.2,
-   "ratings": 6,
-   "homes": 10
+   "rating": 4.3,
+   "ratings": 7,
+   "homes": 11
   },
   "tankerkoenig": {
    "likes": 2,
@@ -137,7 +137,7 @@
    "likes": 2,
    "rating": null,
    "ratings": 2,
-   "homes": 10
+   "homes": 9
   },
   "timers": {
    "likes": 0,
@@ -155,25 +155,25 @@
    "likes": 1,
    "rating": null,
    "ratings": 1,
-   "homes": 5
+   "homes": 6
   },
   "voice_assist": {
    "likes": 8,
    "rating": 4.6,
-   "ratings": 9,
-   "homes": 13
+   "ratings": 10,
+   "homes": 14
   },
   "waste_collection": {
    "likes": 9,
    "rating": 4.7,
-   "ratings": 9,
-   "homes": 13
+   "ratings": 10,
+   "homes": 14
   },
   "waste_overview": {
    "likes": 3,
    "rating": 4,
-   "ratings": 3,
-   "homes": 4
+   "ratings": 4,
+   "homes": 3
   },
   "waze_traveltime": {
    "likes": 3,
@@ -197,7 +197,7 @@
    "likes": 2,
    "rating": null,
    "ratings": 1,
-   "homes": 4
+   "homes": 5
   }
  }
 }
