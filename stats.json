@@ -35,7 +35,7 @@
    "likes": 1,
    "rating": 3.7,
    "ratings": 3,
-   "homes": 3
+   "homes": 2
   },
   "electricity_price": {
    "likes": 2,
@@ -117,8 +117,8 @@
   },
   "status_tile": {
    "likes": 1,
-   "rating": 4,
-   "ratings": 5,
+   "rating": 4.2,
+   "ratings": 6,
    "homes": 10
   },
   "tankerkoenig": {
@@ -171,8 +171,8 @@
   },
   "waste_overview": {
    "likes": 3,
-   "rating": null,
-   "ratings": 2,
+   "rating": 4,
+   "ratings": 3,
    "homes": 4
   },
   "waze_traveltime": {
