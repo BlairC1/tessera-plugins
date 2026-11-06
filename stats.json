@@ -11,7 +11,7 @@
    "likes": 0,
    "rating": 5,
    "ratings": 3,
-   "homes": 6
+   "homes": 7
   },
   "buienradar": {
    "likes": 2,
@@ -27,26 +27,26 @@
   },
   "custom_card": {
    "likes": 15,
-   "rating": 4.4,
-   "ratings": 12,
-   "homes": 21
+   "rating": 4.5,
+   "ratings": 15,
+   "homes": 24
   },
   "dwd_rain": {
    "likes": 1,
    "rating": 3.7,
    "ratings": 3,
-   "homes": 2
+   "homes": 3
   },
   "electricity_price": {
    "likes": 2,
-   "rating": 4.2,
-   "ratings": 5,
-   "homes": 4
+   "rating": 4.3,
+   "ratings": 6,
+   "homes": 5
   },
   "energidata_price": {
    "likes": 0,
    "rating": null,
-   "ratings": 1,
+   "ratings": 2,
    "homes": 3
   },
   "energy_flow": {
@@ -57,21 +57,21 @@
   },
   "flip_clock": {
    "likes": 10,
-   "rating": 3.8,
-   "ratings": 18,
-   "homes": 27
+   "rating": 4,
+   "ratings": 22,
+   "homes": 30
   },
   "guition_relays": {
    "likes": 0,
    "rating": 5,
-   "ratings": 6,
+   "ratings": 7,
    "homes": 10
   },
   "new_music": {
    "likes": 3,
    "rating": null,
    "ratings": 0,
-   "homes": 10
+   "homes": 11
   },
   "ov_departures": {
    "likes": 3,
@@ -117,8 +117,8 @@
   },
   "status_tile": {
    "likes": 1,
-   "rating": 4.3,
-   "ratings": 7,
+   "rating": 4.4,
+   "ratings": 9,
    "homes": 11
   },
   "tankerkoenig": {
@@ -135,9 +135,9 @@
   },
   "thermo_dial": {
    "likes": 2,
-   "rating": null,
-   "ratings": 2,
-   "homes": 9
+   "rating": 4.5,
+   "ratings": 4,
+   "homes": 10
   },
   "timers": {
    "likes": 0,
@@ -155,18 +155,18 @@
    "likes": 1,
    "rating": null,
    "ratings": 1,
-   "homes": 6
+   "homes": 7
   },
   "voice_assist": {
-   "likes": 8,
+   "likes": 9,
    "rating": 4.6,
    "ratings": 10,
-   "homes": 14
+   "homes": 15
   },
   "waste_collection": {
    "likes": 9,
    "rating": 4.7,
-   "ratings": 10,
+   "ratings": 11,
    "homes": 14
   },
   "waste_overview": {
@@ -188,16 +188,16 @@
    "homes": 2
   },
   "wifi_qr": {
-   "likes": 2,
-   "rating": null,
-   "ratings": 2,
-   "homes": 2
+   "likes": 3,
+   "rating": 5,
+   "ratings": 3,
+   "homes": 4
   },
   "world_clock": {
    "likes": 2,
    "rating": null,
-   "ratings": 1,
-   "homes": 5
+   "ratings": 2,
+   "homes": 6
   }
  }
 }

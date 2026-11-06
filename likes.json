@@ -21,12 +21,12 @@
   "thermo_dial": 2,
   "toothbrush": 1,
   "vinyl_deck": 1,
-  "voice_assist": 8,
+  "voice_assist": 9,
   "waste_collection": 9,
   "waste_overview": 3,
   "waze_traveltime": 3,
   "weather_warnings": 1,
-  "wifi_qr": 2,
+  "wifi_qr": 3,
   "world_clock": 2
  }
 }
