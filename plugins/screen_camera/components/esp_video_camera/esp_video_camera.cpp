@@ -1381,7 +1381,9 @@ void ESPVideoCamera::schedule_capture_retry_() {
 
 bool ESPVideoCamera::configure_capture_format_(uint32_t pixelformat) {
   uint32_t width = 0, height = 0;
-  bool force_res = parse_resolution(this->resolution_, width, height);
+  // In a field of view of the sensor's own (Full) the sensor's format sets the
+  // capture size; `resolution:` then only sets the PPA's output (setup_rotation_).
+  bool force_res = this->field_active_ == 0 && parse_resolution(this->resolution_, width, height);
 
   struct v4l2_format fmt;
   memset(&fmt, 0, sizeof(fmt));
@@ -1993,8 +1995,9 @@ bool ESPVideoCamera::start_jpeg_pipeline_() {
                   RawVideoPixelFormat::YUV420_OUYY_EVYY
           ? V4L2_PIX_FMT_YUV420
           : V4L2_PIX_FMT_RGB565;
-  if (this->is_raw_csi_)
-    this->apply_field_();
+  // The field of view applies to every capture, the JPEG pictures too: Full's
+  // 960x1080 halves its lines on the PPA when `resolution:` asks for 960x540.
+  this->apply_field_();
   if (!this->configure_capture_format_(capture_format))
     return false;
   this->hardware_framerate_active_.store(
