@@ -29,7 +29,7 @@
    "likes": 15,
    "rating": 4.5,
    "ratings": 15,
-   "homes": 24
+   "homes": 23
   },
   "dwd_rain": {
    "likes": 1,
@@ -44,7 +44,7 @@
    "homes": 5
   },
   "energidata_price": {
-   "likes": 0,
+   "likes": 1,
    "rating": null,
    "ratings": 2,
    "homes": 3
@@ -70,7 +70,7 @@
   "new_music": {
    "likes": 3,
    "rating": null,
-   "ratings": 0,
+   "ratings": 1,
    "homes": 11
   },
   "ov_departures": {
@@ -173,12 +173,12 @@
    "likes": 3,
    "rating": 4,
    "ratings": 4,
-   "homes": 3
+   "homes": 4
   },
   "waze_traveltime": {
    "likes": 3,
    "rating": null,
-   "ratings": 1,
+   "ratings": 2,
    "homes": 2
   },
   "weather_warnings": {
@@ -188,7 +188,7 @@
    "homes": 2
   },
   "wifi_qr": {
-   "likes": 3,
+   "likes": 4,
    "rating": 5,
    "ratings": 3,
    "homes": 4
