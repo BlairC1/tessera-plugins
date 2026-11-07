@@ -29,7 +29,7 @@
    "likes": 15,
    "rating": 4.5,
    "ratings": 15,
-   "homes": 23
+   "homes": 24
   },
   "dwd_rain": {
    "likes": 1,
@@ -58,8 +58,8 @@
   "flip_clock": {
    "likes": 10,
    "rating": 4,
-   "ratings": 22,
-   "homes": 30
+   "ratings": 23,
+   "homes": 31
   },
   "guition_relays": {
    "likes": 0,
@@ -83,19 +83,19 @@
    "likes": 2,
    "rating": null,
    "ratings": 1,
-   "homes": 7
+   "homes": 8
   },
   "photo_slideshow": {
    "likes": 3,
    "rating": null,
    "ratings": 0,
-   "homes": 4
+   "homes": 5
   },
   "picture_frame": {
    "likes": 1,
    "rating": null,
    "ratings": 1,
-   "homes": 10
+   "homes": 11
   },
   "pollen": {
    "likes": 1,
@@ -119,7 +119,7 @@
    "likes": 1,
    "rating": 4.4,
    "ratings": 9,
-   "homes": 11
+   "homes": 12
   },
   "tankerkoenig": {
    "likes": 2,
@@ -137,7 +137,7 @@
    "likes": 2,
    "rating": 4.5,
    "ratings": 4,
-   "homes": 10
+   "homes": 11
   },
   "timers": {
    "likes": 0,
