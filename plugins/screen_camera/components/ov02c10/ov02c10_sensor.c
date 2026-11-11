@@ -744,15 +744,15 @@ typedef struct {
     uint8_t val;
 } ov02c10_change_t;
 
-#define OV02C10_FULL_VTS 2328
+#define OV02C10_FULL_VTS 1164
 static const ov02c10_change_t s_full_changes[] = {
-    {0x3800, 0x00}, {0x3801, 0x00}, {0x3802, 0x00}, {0x3803, 0x08},  // the window, 0..1935 x 8..1087
-    {0x3804, 0x07}, {0x3805, 0x8f}, {0x3806, 0x04}, {0x3807, 0x3f},
-    {0x3808, 0x03}, {0x3809, 0xc0}, {0x380a, 0x04}, {0x380b, 0x38},  // the picture, 960 x 1080
+    // Blair: the whole array at full resolution, 30 fps. These are the window values of this driver's own
+    // 1920x1080 table (and the Linux ov02c10 driver's), on the 1288x728 table, which differs from that one in
+    // nothing else but the stream-on at its end. No binning; offsets, PLL and line timing stay the table's.
+    {0x3800, 0x00}, {0x3801, 0x00}, {0x3802, 0x00}, {0x3803, 0x04},  // the window, 0..1935 x 4..1091
+    {0x3804, 0x07}, {0x3805, 0x8f}, {0x3806, 0x04}, {0x3807, 0x43},
+    {0x3808, 0x07}, {0x3809, 0x80}, {0x380a, 0x04}, {0x380b, 0x38},  // the picture, 1920 x 1080
     {0x380e, OV02C10_FULL_VTS >> 8}, {0x380f, OV02C10_FULL_VTS & 0xff},
-    {0x3810, 0x00}, {0x3811, 0x04}, {0x3812, 0x00}, {0x3813, 0x00},  // its offsets in the window
-    {0x3814, 0x03}, {0x3815, 0x01}, {0x3816, 0x01}, {0x3817, 0x01},  // the columns by pairs, every line
-    {0x3820, 0xa2}, {0x4501, 0x00},                                  // each pair of columns averaged
 };
 #define OV02C10_FULL_CHANGES (sizeof(s_full_changes) / sizeof(s_full_changes[0]))
 #define OV02C10_FULL_REGS    320
@@ -799,8 +799,9 @@ static const esp_cam_sensor_format_t *ov02c10_build_full(void)
     memcpy(&s_full_isp, base->isp_info, sizeof(s_full_isp));
     s_full_isp.isp_v1_info.vts = OV02C10_FULL_VTS;
     s_full_format = *base;
-    s_full_format.name = "OV02C10_full_960x1080";
-    s_full_format.width = 960;
+    // Not "OV02C10_full_...": that prefix selects the binned mode's offset handling (field_mode).
+    s_full_format.name = "OV02C10_wide_1920x1080";
+    s_full_format.width = 1920;
     s_full_format.height = 1080;
     s_full_format.regs = s_full_regs;
     s_full_format.regs_size = (int)n;
