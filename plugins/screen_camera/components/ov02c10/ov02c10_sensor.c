@@ -23,6 +23,7 @@
 #include <sys/param.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
+#include <freertos/semphr.h>
 #include "driver/gpio.h"
 #include "esp_err.h"
 #include "esp_log.h"
@@ -345,15 +346,91 @@ static esp_err_t ov02c10_set_stream(esp_cam_sensor_device_t *dev, int enable)
     return ret;
 }
 
+// ---- A frame as long as its exposure needs (Blair, 2026-11-14) ----
+// Auto exposure may ask for more than one frame of the set rate lasts; the frame then grows to hold it (more blanking
+// lines, VTS) and shrinks back when the light returns, the way a security camera's "slow shutter" does. Three lengths,
+// in lines:
+//   the format's own  (its table's VTS: 30 frames a second),
+//   the set rate's    (ov02c10_set_fps, never shorter than the format's own),
+//   the longest       (ov02c10_sensor_slow_fps: the slowest rate allowed; without one, the format's own, which is
+//                      how this driver behaved before -- exposure never past 1/30 s).
+// The frame in force is the set rate's, or the exposure plus 15 lines when that is longer. Exposure and frame length
+// that change together are written as one group the sensor takes at a frame's end (datasheet 2.11, table 2-11), so no
+// frame is exposed for longer than it lasts.
+#define OV02C10_REG_GROUP_ACCESS 0x3208
+#define OV02C10_REG_VTS_H        0x380e
+#define OV02C10_REG_VTS_L        0x380f
+#define OV02C10_VTS_MAX          0x7fffu
+static volatile uint32_t s_slow_fps;   // the slowest rate auto exposure may bring the sensor to; 0: none
+static uint32_t s_rate_vts;            // the set rate's frame length; 0: the format's own
+static uint32_t s_frame_vts;           // the frame length the sensor holds; 0: the format's own (as its table wrote)
+static SemaphoreHandle_t s_frame_lock; // exposure comes from the ISP pipeline's task, the rate from the capture task
+
+void ov02c10_sensor_slow_fps(int fps)
+{
+    s_slow_fps = fps <= 0 ? 0 : (uint32_t)MAX(fps, 2);
+}
+
+// The longest frame auto exposure may ask for: room for an exposure of a whole 1/slow_fps second plus the 15 lines.
+static uint32_t ov02c10_longest_vts(const esp_cam_sensor_format_t *format)
+{
+    const uint32_t own = (uint32_t)format->isp_info->isp_v1_info.vts;
+    const uint32_t line_ns = format->isp_info->isp_v1_info.tline_ns;
+    const uint32_t slow = s_slow_fps;
+    if (slow == 0 || line_ns == 0) {
+        return own;
+    }
+    const uint64_t frame_ns = 1000000000ULL / slow;
+    const uint32_t lines = (uint32_t)((frame_ns + line_ns - 1) / line_ns) + OV02C10_EXPOSURE_MAX_MARGIN;
+    return MIN(MAX(lines, own), OV02C10_VTS_MAX);
+}
+
+// Writes the exposure, and with it the frame length when that has to change. Called with s_frame_lock held.
+static esp_err_t ov02c10_write_frame(esp_cam_sensor_device_t *dev, uint32_t lines)
+{
+    const uint32_t own = (uint32_t)dev->cur_format->isp_info->isp_v1_info.vts;
+    const uint32_t vts = MIN(MAX(MAX(s_rate_vts, own), lines + OV02C10_EXPOSURE_MAX_MARGIN), OV02C10_VTS_MAX);
+    const uint32_t held = s_frame_vts ? s_frame_vts : own;
+    esp_sccb_io_handle_t sccb = dev->sccb_handle;
+    esp_err_t ret = ESP_OK;
+    if (vts == held) {
+        ret |= ov02c10_write(sccb, OV02C10_REG_EXPOSURE_H, (lines >> 8) & 0xff);
+        ret |= ov02c10_write(sccb, OV02C10_REG_EXPOSURE_L, lines & 0xff);
+        return ret;
+    }
+    // A group only launches while the sensor streams; at rest the registers are written as they are.
+    const bool grouped = dev->stream_status != 0;
+    if (grouped) {
+        ret |= ov02c10_write(sccb, OV02C10_REG_GROUP_ACCESS, 0x00);
+    }
+    ret |= ov02c10_write(sccb, OV02C10_REG_VTS_H, (uint8_t)(vts >> 8));
+    ret |= ov02c10_write(sccb, OV02C10_REG_VTS_L, (uint8_t)(vts & 0xff));
+    ret |= ov02c10_write(sccb, OV02C10_REG_EXPOSURE_H, (lines >> 8) & 0xff);
+    ret |= ov02c10_write(sccb, OV02C10_REG_EXPOSURE_L, lines & 0xff);
+    if (grouped) {
+        ret |= ov02c10_write(sccb, OV02C10_REG_GROUP_ACCESS, 0x10);
+        ret |= ov02c10_write(sccb, OV02C10_REG_GROUP_ACCESS, 0xa0);
+    }
+    if (ret == ESP_OK) {
+        s_frame_vts = vts;
+    }
+    return ret;
+}
+
 static esp_err_t ov02c10_set_exposure(esp_cam_sensor_device_t *dev, uint32_t lines)
 {
     ov02c10_state_t *state = (ov02c10_state_t *)dev->priv;
-    uint32_t max = dev->cur_format->isp_info->isp_v1_info.vts - OV02C10_EXPOSURE_MAX_MARGIN;
+    uint32_t max = ov02c10_longest_vts(dev->cur_format) - OV02C10_EXPOSURE_MAX_MARGIN;
     lines = MAX(lines, OV02C10_EXPOSURE_MIN);
     lines = MIN(lines, max);
 
-    esp_err_t ret = ov02c10_write(dev->sccb_handle, OV02C10_REG_EXPOSURE_H, (lines >> 8) & 0xff);
-    ret |= ov02c10_write(dev->sccb_handle, OV02C10_REG_EXPOSURE_L, lines & 0xff);
+    if (s_frame_lock != NULL) {
+        xSemaphoreTake(s_frame_lock, portMAX_DELAY);
+    }
+    esp_err_t ret = ov02c10_write_frame(dev, lines);
+    if (s_frame_lock != NULL) {
+        xSemaphoreGive(s_frame_lock);
+    }
     if (ret == ESP_OK) {
         state->exposure_val = lines;
         s_exposure_lines = lines;
@@ -444,7 +521,7 @@ static esp_err_t ov02c10_query_para_desc(esp_cam_sensor_device_t *dev, esp_cam_s
     case ESP_CAM_SENSOR_EXPOSURE_VAL:
         qdesc->type = ESP_CAM_SENSOR_PARAM_TYPE_NUMBER;
         qdesc->number.minimum = OV02C10_EXPOSURE_MIN;
-        qdesc->number.maximum = dev->cur_format->isp_info->isp_v1_info.vts - OV02C10_EXPOSURE_MAX_MARGIN;
+        qdesc->number.maximum = ov02c10_longest_vts(dev->cur_format) - OV02C10_EXPOSURE_MAX_MARGIN;
         qdesc->number.step = 1;
         qdesc->default_value = dev->cur_format->isp_info->isp_v1_info.exp_def;
         break;
@@ -575,6 +652,10 @@ static esp_err_t ov02c10_set_format(esp_cam_sensor_device_t *dev, const esp_cam_
     // Exposure and gain stay where the ISP pipeline set them last (the defaults until it has): esp_video writes them
     // only when its choice changes, so a new format that put the defaults back left the sensor there whenever auto
     // exposure kept its choice (a Full mode stayed at 31.6 ms and 2x in a dark room, 2026-10-27).
+    // The table just wrote the format's own frame length; the exposure kept brings its longer frame back with it.
+    // Written as they are, not as a group: the driver stops the stream just below.
+    s_frame_vts = 0;
+    dev->stream_status = 0;
     ret = ov02c10_set_exposure(dev, state->exposure_val);
     ret |= ov02c10_set_gain_index(dev, state->gain_index);
     ret |= ov02c10_apply_orientation(dev);
@@ -817,14 +898,9 @@ static const esp_cam_sensor_format_t *ov02c10_field_format(int field)
 }
 
 // ---- The frame rate while it streams (esp_video_camera's camera_sensor.h) ----
-// Slower by a longer frame: more lines of blanking (VTS, 0x380e..0x380f), written as a group the sensor takes at a
-// frame's end (OmniVision's OV02C10 datasheet, 2.11 and table 2-11: 0x3208 0x00 starts group 0, 0x10 ends it, 0xa0
-// launches it in the frame blanking), so no frame comes out half one length and half the other. Never faster than the
-// format's own VTS; at most 0x7fff lines. The exposure stays as the ISP pipeline set it, which this driver keeps within
-// the format's own VTS less 15 lines (ov02c10_set_exposure), so a frame turned short again never meets a longer one.
-#define OV02C10_REG_GROUP_ACCESS 0x3208
-#define OV02C10_REG_VTS_H        0x380e
-#define OV02C10_REG_VTS_L        0x380f
+// Slower by a longer frame: more lines of blanking (VTS, 0x380e..0x380f). Never faster than the format's own VTS; at
+// most 0x7fff lines. This is the rate in good light: an exposure longer than its frame makes the frame longer still
+// (ov02c10_write_frame above), down to the slowest rate allowed. Returns the rate set, 0 when nothing took.
 static int ov02c10_set_fps(int fps)
 {
     if (s_device == NULL || s_device->cur_format == NULL || s_device->cur_format->isp_info == NULL) {
@@ -839,14 +915,17 @@ static int ov02c10_set_fps(int fps)
     uint32_t vts = own;
     if (fps > 0) {
         const uint32_t wanted = (uint32_t)(1000000000ULL / ((uint64_t)fps * line_ns));
-        vts = MIN(MAX(wanted, own), 0x7fffu);
+        vts = MIN(MAX(wanted, own), OV02C10_VTS_MAX);
     }
-    esp_sccb_io_handle_t sccb = s_device->sccb_handle;
-    esp_err_t ret = ov02c10_write(sccb, OV02C10_REG_GROUP_ACCESS, 0x00);
-    ret |= ov02c10_write(sccb, OV02C10_REG_VTS_H, (uint8_t)(vts >> 8));
-    ret |= ov02c10_write(sccb, OV02C10_REG_VTS_L, (uint8_t)(vts & 0xff));
-    ret |= ov02c10_write(sccb, OV02C10_REG_GROUP_ACCESS, 0x10);
-    ret |= ov02c10_write(sccb, OV02C10_REG_GROUP_ACCESS, 0xa0);
+    const ov02c10_state_t *state = (const ov02c10_state_t *)s_device->priv;
+    if (s_frame_lock != NULL) {
+        xSemaphoreTake(s_frame_lock, portMAX_DELAY);
+    }
+    s_rate_vts = vts;
+    const esp_err_t ret = ov02c10_write_frame(s_device, state->exposure_val);
+    if (s_frame_lock != NULL) {
+        xSemaphoreGive(s_frame_lock);
+    }
     if (ret != ESP_OK) {
         ESP_LOGW(TAG, "The frame length did not take (%u lines)", (unsigned)vts);
         return 0;
@@ -917,6 +996,9 @@ esp_cam_sensor_device_t *ov02c10_detect(esp_cam_sensor_config_t *config)
         return NULL;
     }
 
+    if (s_frame_lock == NULL) {
+        s_frame_lock = xSemaphoreCreateMutex();
+    }
     for (uint32_t i = 0; i < OV02C10_GAIN_COUNT; i++) {
         const uint32_t digital = i < OV02C10_ANALOG_COUNT ? 1024 : 1024 + (i - OV02C10_ANALOG_COUNT + 1) * 16;
         const uint32_t analog = i < OV02C10_ANALOG_COUNT ? i + OV02C10_GAIN_STEP_MIN : OV02C10_GAIN_STEP_MAX;
