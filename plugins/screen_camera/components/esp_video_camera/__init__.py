@@ -172,12 +172,18 @@ async def to_code(config):
     jpeg_enabled = config[CONF_DEVICE] in ("jpeg", "/dev/video10")
     # Use the published component so its compatible esp_cam_sensor, esp_ipa
     # and esp_h264 dependencies are resolved by the IDF component manager.
-    add_idf_component(name="espressif/esp_video", ref="2.4.1")
+    # Blair, 2026-11-20: 2.6.0 is the first release with the MIPI-CSI fix for ESP32-P4 revisions below v3.0 on
+    # ESP-IDF 5.5.6 or later ("failed to configure format conversion" with 2.4.1).
+    add_idf_component(name="espressif/esp_video", ref="2.6.0")
+    # esp_video's public esp_video_isp_pipeline.h includes esp_ipa.h, but esp_video only passes esp_ipa's headers on
+    # under the short name "esp_ipa", which a registry copy (espressif__esp_ipa) doesn't have. Naming it here, at the
+    # version esp_video 2.6.0 asks for, gives the app (and YAML lambdas) its headers.
+    add_idf_component(name="espressif/esp_ipa", ref="2.5.*")
     # Tessera: the empty esp_h264 a JPEG-only build takes instead of the encoder is the component esp_h264_placeholder
     # (Screen camera's plugin.yaml), so that the video's build, which goes without it, gets a clean build folder.
     if config[CONF_ENABLE_UVC]:
         # USB-UVC host driver, aligned with esp_video 2.x's own dependency.
-        add_idf_component(name="espressif/usb_host_uvc", ref="2.5.*")
+        add_idf_component(name="espressif/usb_host_uvc", ref="2.6.*")
 
     # Pipeline features. Kconfig keys verified against esp_video 2.4.
     # ENABLE_ISP_PIPELINE_CONTROLLER (default n) is what pulls in esp_ipa and
